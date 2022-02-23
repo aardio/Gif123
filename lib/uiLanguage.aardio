@@ -1,0 +1,45 @@
+﻿namespace uiLanguage;
+
+chs = {
+	title = "Gif123 - 录屏工具";
+	record = "录制";
+	hotkey = "热键: Ctrl + Shift + Alt + F12";
+	stop = "停止";
+	fps = "每秒最大帧数";
+	preview = "预览";
+	previewErrMsg = "请先点击「录制」按钮！";
+	previewErrMsg2 = "请先点击「停止」按钮！";
+	explore = "在资源管理器中浏览图像";
+	copy = "复制";
+	git = "查看本软件源代码";
+}
+
+cht = {
+	title = "Gif123 - 錄屏工具";
+	record = "錄製";
+	hotkey = "熱鍵: Ctrl + Shift + Alt + F12";
+	stop = "停止";
+	fps = "每秒最大幀數";
+	preview = "預覽";
+	previewErrMsg = "請先點擊「錄製」按鈕！";
+	previewErrMsg2 = "請先點擊「停止」按鈕！";
+	explore = "在資源管理器中瀏覽圖像";
+	copy = "復製";
+	git = "查看本軟件源代碼";
+}
+
+en = {
+	title = "Gif123 - Record screen to GIF";
+	record = "Record";
+	hotkey = "Hot key: Ctrl + Shift + Alt + F12";
+	stop = "Stop";
+	fps = "Max Frames Per Second";
+	preview = "Preview";
+	previewErrMsg = "Please click the 「Record」 button first!";
+	previewErrMsg2 = "Please click the 「Stop」 button first!";
+	explore = "Open containing folder and select the GIF file";
+	copy = "Copy";  
+	git = "Get the source code on GitHub";
+}
+
+..table.assign(self,chs);

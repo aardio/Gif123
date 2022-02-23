@@ -1,0 +1,265 @@
+import uiLanguage;
+import fonts.fontAwesome.min;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text="Gif123 - 录屏工具";right=722;bottom=512;bgcolor=4752084;border="none")
+winform.add(
+btnCopy={cls="plus";text="复制";left=155;top=0;right=222;bottom=30;align="left";color=3947580;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=2}};iconText='\uF0EA';notify=1;textPadding={left=21};z=5};
+btnExplore={cls="plus";text='\uF07C';left=385;top=2;right=417;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesome');notify=1;z=4};
+btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=2}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
+btnWebSite={cls="plus";text='\uF09B';left=423;top=1;right=455;bottom=31;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesome');notify=1;z=9};
+chkPreview={cls="plus";text="预览";left=80;top=0;right=155;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesome');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
+lbFps={cls="plus";text="FPS：";left=223;top=7;right=261;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
+lbFps2={cls="plus";text="16";left=357;top=7;right=381;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
+plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=10789024;db=1;dl=1;dr=1;dt=1;repeat="scale";z=2};
+tbFps={cls="plus";left=263;top=9;right=354;bottom=22;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=6};
+titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1}
+)
+/*}}*/
+
+import win.region.hole;
+var holePreview = win.region.hole(winform.plusPreview);
+win.setTopmost(winform.hwnd,true);
+
+import soImage; 
+var imgScreen = soImage();
+var imgCursor = soImage();
+var gifFile;
+
+winform.btnRecord.oncommand = function(id,event){
+	if(winform.btnRecord.recording == true){
+		
+		winform.btnRecord.disabled = true;
+		winform.clearInterval(winform.timerId);
+		gifFile.close(); 
+		gifFile = null;
+		
+		winform.btnRecord.disabledText = { '\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
+		thread.invokeAndWait(
+			function(){
+				import process.gifsicle;
+				process.gifsicle.optimize(io.appData("aardio/std/gif123/screenshots.gif"))
+				process.gifsicle()
+			} 
+		) 
+		winform.btnRecord.disabledText = null;
+	
+		winform.chkPreview.disabled = false;
+		winform.btnCopy.disabled = false;
+		winform.tbFps.disabled = false;
+		winform.btnRecord.text = uiLanguage.record;
+		winform.btnRecord.iconText = '\uF111';
+		winform.btnRecord.recording = false;
+		win.setTopmost(winform.hwnd,false); 
+		return;
+	}
+	
+	gifFile = soImage.gifFile(io.appData("aardio/std/gif123/screenshots.gif")); 
+	if(!gifFile){
+		return winform.msgboxErr("打开 screenshots.gif 失败，请检查是否被占用。")
+	}
+	
+	winform.btnRecord.recording = true;
+	winform.btnRecord.iconText = '\uF0C8';
+	winform.btnRecord.text = uiLanguage.stop; 
+	winform.chkPreview.disabled = true;
+	winform.btnCopy.disabled = true;
+	winform.tbFps.disabled = true; 
+	win.setTopmost(winform.hwnd);
+	 
+	gifFile.lasttick = time.tick();  
+	winform.timerId = winform.setInterval( 
+		function(){
+			var tk = time.tick();
+			if(gifFile.lasttick ){
+				//抓下帧以前保存上一帧的延时 
+    			var delay = (tk-gifFile.lasttick)/10;
+    			gifFile.write(imgScreen,,delay); 
+			} 
+    		gifFile.lasttick = tk;
+    		
+			var x,y,cx,cy = winform.plusPreview.getPos(true);
+			imgScreen.capture(,x,y,cx,cy); 
+			
+    		var x,y = imgCursor.captureCursor();
+    		x,y = win.toClient(winform.plusPreview.hwnd,x,y) 
+    		imgScreen.mix(imgCursor,x,y,6/*_MIX_SCREEN*/);  
+    		
+    		var dx,dy = gdi.getDpiScale();
+    		if(dx!=1){
+    			imgScreen.resize(cx/dx,cy/dx)
+    		}
+    		
+		},1000/winform.tbFps.progressPos
+	)
+}
+
+import fsys;
+winform.chkPreview.oncommand = function(id,event){
+	winform.btnRecord.disabled = winform.chkPreview.checked;
+	
+	if(winform.chkPreview.checked){
+		var screenshotsPath = io.appData("aardio/std/gif123/screenshots.gif");
+		var previewPath = io.appData("aardio/std/gif123/screenshots-preview.gif");
+
+		fsys.delete(previewPath);
+		fsys.copy(screenshotsPath,previewPath);
+		
+		winform.plusPreview.setBackground(previewPath,false,true);
+	}
+	else {
+		var old = winform.plusPreview.setBackground(null);
+		if(old){
+			old.dispose();
+			..fsys.delete(io.appData("aardio/std/gif123/screenshots-preview.gif"));
+		} 
+	}
+	
+	holePreview.enable(!winform.chkPreview.checked);
+}
+
+winform.chkPreview.disabled = true;
+
+import process;
+winform.btnExplore.oncommand = function(id,event){
+	if(winform.btnRecord.recording){
+		return winform.msgboxErr(uiLanguage.previewErrMsg2)
+	}
+	
+	var path = io.appData("aardio/std/gif123/screenshots.gif");
+	if(io.exist(path)){
+		process.exploreSelect(path)
+	}
+	else {
+		winform.msgboxErr(uiLanguage.previewErrMsg)
+	}
+}
+
+winform.btnWebSite.oncommand = function(id,event){
+	process.openUrl("https://github.com/aardio/gif123");
+}
+
+import win.clip.gif;
+winform.btnCopy.oncommand = function(id,event){
+	win.clip.gif.write( io.appData("aardio/std/gif123/screenshots.gif"));
+	winform.btnCopy.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
+	win.delay(200);
+	winform.btnCopy.disabledText = null;
+}
+
+var style = {
+	button = {
+		color = {
+			active=0xFF00FF00;
+			default=0xFF3C3C3C;
+			disabled=0xFF9D9D9D;
+			hover=0xFFFF0000
+		}
+	};
+	checkbox = {
+		color={
+			active=0xFF00FF00;
+			default=0xFF000000;
+			disabled=0xFF9D9D9D;
+			hover=0xFFFF0000
+		};
+		checked={
+			iconText='\uF14A'
+		}
+	};
+	trackbar = {
+		background={
+			default=0xFF23ABD9;
+			disabled=0xFFC6C6C6;
+			hover=0xFF4AC3F2
+		};
+		foreground={
+			default=0xFFFF771C;
+			disabled=0xFF808080;
+			hover=0xFFFF7E24
+		};
+		color={
+			active=0xFFEE630A;
+			default=0xFFFF711E;
+			disabled=0xFF808080;
+			hover=0xFFF88917
+		}
+	}
+}
+
+winform.chkPreview.skin(style.checkbox);
+winform.btnRecord.skin(style.button);
+winform.btnCopy.skin(style.button);
+winform.btnWebSite.skin(style.button);
+winform.btnExplore.skin(style.button);
+winform.tbFps.skin(style.trackbar);
+winform.tbFps.setTrackbarRange(1,36);
+winform.tbFps.progressPos = 16;
+winform.tbFps.onPosChanged = function( pos,thumbTrack ){
+	winform.lbFps2.text = pos;
+}
+
+import win.ui.tooltip;
+var tooltipCtrl = win.ui.tooltip(winform);
+ 
+var setUiLanguage = function(lang){
+	..table.assign(uiLanguage,lang);
+	
+	winform.text = uiLanguage.title;
+	winform.btnRecord.text = uiLanguage.record; 
+	winform.chkPreview.text = uiLanguage.preview;
+	winform.btnCopy.text = uiLanguage.copy;
+	
+	tooltipCtrl.addTool(winform.lbFps,uiLanguage.fps); 
+	tooltipCtrl.addTool(winform.lbFps2,uiLanguage.fps); 
+	tooltipCtrl.addTool(winform.btnExplore,uiLanguage.explore); 
+	tooltipCtrl.addTool(winform.btnWebSite,uiLanguage.git); 
+	tooltipCtrl.addTool(winform.btnRecord,uiLanguage.hotkey); 
+}
+
+var lcid = ::Kernel32.GetUserDefaultLCID()
+if( lcid==1028 || lcid == 3076 || lcid == 5124 ){
+	setUiLanguage(uiLanguage.cht);
+}
+elseif( lcid!=2052 ){
+	setUiLanguage(uiLanguage.en);
+}
+else {
+	setUiLanguage(uiLanguage.chs);
+}
+
+import win.ui.minmax;
+win.ui.minmax(winform,200,70);
+winform.adjust = function( cx,cy,wParam ) {	
+	var dpiScaleX = winform.dpiScaleX; 
+	winform.btnWebSite.hide = cx/dpiScaleX<605;
+	winform.btnExplore.hide = cx/dpiScaleX<580;
+	winform.lbFps2.hide = cx/dpiScaleX<550;
+	winform.tbFps.hide = cx/dpiScaleX<519;
+	winform.lbFps.hide = cx/dpiScaleX<519;
+	winform.btnCopy.hide = cx/dpiScaleX<360;
+	winform.chkPreview.hide = cx/dpiScaleX<300;
+};
+
+import win.ui.accelerator;
+var accelerator = win.ui.accelerator({
+    { 
+        ctrl = true; shift = true; alt = true; vkey = 0x7B/*_VK_F12*/; 
+        oncommand = function() {
+        	winform.btnRecord.oncommand();
+        }
+    };   
+    
+},winform );
+
+winform.btnRecord.hkId = winform.reghotkey(
+    function(id,mod,vk){
+		winform.btnRecord.oncommand(); 
+	},2/*_MOD_CONTROL*/|1/*_MOD_ALT*/| 4/*_MOD_SHIFT*/,0x7B/*_VK_F12*/
+);
+
+import win.ui.simpleWindow;
+win.ui.simpleWindow(winform);
+
+winform.show();
+win.loopMessage();
