@@ -1,32 +1,43 @@
 import uiLanguage;
 import fonts.fontAwesome.min;
+import soImage; 
+import win.region.hole;
+import win.ui.atom;
 import win.ui;
 /*DSG{{*/
 var winform = win.form(text="Gif123 - 录屏工具";right=722;bottom=512;bgcolor=4752084;border="none")
 winform.add(
-btnCopy={cls="plus";text="复制";left=155;top=0;right=222;bottom=30;align="left";color=3947580;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=2}};iconText='\uF0EA';notify=1;textPadding={left=21};z=5};
-btnExplore={cls="plus";text='\uF07C';left=385;top=2;right=417;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesome');notify=1;z=4};
-btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=2}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
-btnWebSite={cls="plus";text='\uF09B';left=423;top=1;right=455;bottom=31;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesome');notify=1;z=9};
-chkPreview={cls="plus";text="预览";left=80;top=0;right=155;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesome');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
+btnCopy={cls="plus";text="复制";left=155;top=0;right=222;bottom=30;align="left";color=3947580;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0EA';notify=1;textPadding={left=21};z=5};
+btnExplore={cls="plus";text='\uF07C';left=385;top=2;right=417;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=4};
+btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=2}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
+btnWebSite={cls="plus";text='\uF09B';left=423;top=1;right=455;bottom=31;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=9};
+chkPreview={cls="plus";text="预览";left=80;top=0;right=155;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
 lbFps={cls="plus";text="FPS：";left=223;top=7;right=261;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
-lbFps2={cls="plus";text="16";left=357;top=7;right=381;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
+lbFps2={cls="plus";text="12";left=357;top=7;right=381;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
+plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;bgcolor=4752084;db=1;dr=1;forecolor=16777215;hide=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;z=11};
 plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=10789024;db=1;dl=1;dr=1;dt=1;repeat="scale";z=2};
 tbFps={cls="plus";left=263;top=9;right=354;bottom=22;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=6};
 titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1}
 )
 /*}}*/
 
-import win.region.hole;
-var holePreview = win.region.hole(winform.plusPreview);
-win.setTopmost(winform.hwnd,true);
+var atom,hwnd = winform.atom("DA909863-CBDD-4729-9E95-B1E46EB6E859.GIF123");
+if(!atom) return win.setForeground(hwnd)
 
-import soImage; 
+var holePreview = win.region.hole(winform.plusPreview);
+
 var imgScreen = soImage();
 var imgCursor = soImage();
 var gifFile;
 
+var config = {
+	pathScreenshots = io.appData("aardio/std/gif123/screenshots.gif");
+	pathPreview = io.appData("aardio/std/gif123/tmp/screenshots-preview.gif");
+}
+
 winform.btnRecord.oncommand = function(id,event){
+	winform.plusPreview.$previewImagePath = null;
+	
 	if(winform.btnRecord.recording == true){
 		
 		winform.btnRecord.disabled = true;
@@ -36,11 +47,11 @@ winform.btnRecord.oncommand = function(id,event){
 		
 		winform.btnRecord.disabledText = { '\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
 		thread.invokeAndWait(
-			function(){
+			function(pathScreenshots){
 				import process.gifsicle;
-				process.gifsicle.optimize(io.appData("aardio/std/gif123/screenshots.gif"))
+				process.gifsicle.optimize(pathScreenshots);
 				process.gifsicle()
-			} 
+			} ,config.pathScreenshots
 		) 
 		winform.btnRecord.disabledText = null;
 	
@@ -54,9 +65,9 @@ winform.btnRecord.oncommand = function(id,event){
 		return;
 	}
 	
-	gifFile = soImage.gifFile(io.appData("aardio/std/gif123/screenshots.gif")); 
+	gifFile = soImage.gifFile(config.pathScreenshots); 
 	if(!gifFile){
-		return winform.msgboxErr("打开 screenshots.gif 失败，请检查是否被占用。")
+		return winform.msgboxErr(uiLanguage.recodeErrMsg ++ config.pathScreenshots)
 	}
 	
 	winform.btnRecord.recording = true;
@@ -67,14 +78,15 @@ winform.btnRecord.oncommand = function(id,event){
 	winform.tbFps.disabled = true; 
 	win.setTopmost(winform.hwnd);
 	 
-	gifFile.lasttick = time.tick();  
+	gifFile.disposalMethod = 1;
+	gifFile.lasttick = null;  
 	winform.timerId = winform.setInterval( 
 		function(){
 			var tk = time.tick();
 			if(gifFile.lasttick ){
-				//抓下帧以前保存上一帧的延时 
-    			var delay = (tk-gifFile.lasttick)/10;
-    			gifFile.write(imgScreen,,delay); 
+    			var delay = (tk-gifFile.lasttick)/10;//抓下帧以前保存上一帧的延时 
+    			imgScreen.decreaseBpp(8,256,8);
+    			gifFile.write(imgScreen,true,delay); 
 			} 
     		gifFile.lasttick = tk;
     		
@@ -99,23 +111,42 @@ winform.chkPreview.oncommand = function(id,event){
 	winform.btnRecord.disabled = winform.chkPreview.checked;
 	
 	if(winform.chkPreview.checked){
-		var screenshotsPath = io.appData("aardio/std/gif123/screenshots.gif");
-		var previewPath = io.appData("aardio/std/gif123/screenshots-preview.gif");
+		var previewPath = winform.plusPreview.$previewImagePath;
+		if(!previewPath){
+			if(winform.btnRecord.recording){
+				return winform.msgboxErr(uiLanguage.previewErrMsg2);
+			}
+			
+			var screenshotsPath = config.pathScreenshots;
+			if( ! ..io.exist(screenshotsPath) ){
+				return winform.msgboxErr(uiLanguage.previewErrMsg);
+			}
+			
+			previewPath = config.pathPreview;	
+			
+			fsys.delete(previewPath);
+			fsys.copy(screenshotsPath,previewPath);
+		}
 
-		fsys.delete(previewPath);
-		fsys.copy(screenshotsPath,previewPath);
-		
+		winform.plusPreview.$previewImagePath = previewPath;
 		winform.plusPreview.setBackground(previewPath,false,true);
+	
+		winform.plusPreview.predraw();
+		holePreview.enable(false);
+		winform.disableDragFullWindow = true;
 	}
 	else {
+		holePreview.enable(true);
+		winform.disableDragFullWindow = false;
+		
 		var old = winform.plusPreview.setBackground(null);
-		if(old){
-			old.dispose();
-			..fsys.delete(io.appData("aardio/std/gif123/screenshots-preview.gif"));
-		} 
+		if(old){ old.dispose(); }
+			
+		..fsys.delete(config.pathPreview);
+		if(config.pathPreview = winform.plusPreview.$previewImagePath){
+			winform.plusPreview.$previewImagePath = null;
+		}
 	}
-	
-	holePreview.enable(!winform.chkPreview.checked);
 }
 
 winform.chkPreview.disabled = true;
@@ -126,7 +157,7 @@ winform.btnExplore.oncommand = function(id,event){
 		return winform.msgboxErr(uiLanguage.previewErrMsg2)
 	}
 	
-	var path = io.appData("aardio/std/gif123/screenshots.gif");
+	var path = config.pathScreenshots;
 	if(io.exist(path)){
 		process.exploreSelect(path)
 	}
@@ -141,52 +172,22 @@ winform.btnWebSite.oncommand = function(id,event){
 
 import win.clip.gif;
 winform.btnCopy.oncommand = function(id,event){
-	win.clip.gif.write( io.appData("aardio/std/gif123/screenshots.gif"));
+	if(winform.btnRecord.recording){
+		return winform.msgboxErr(uiLanguage.previewErrMsg2)
+	}
+	
+	var path = winform.chkPreview.checked ? winform.plusPreview.$previewImagePath : config.pathScreenshots;
+	if(!..io.exist(path)){
+		return winform.msgboxErr(uiLanguage.previewErrMsg)
+	}
+	
+	win.clip.gif.write( path );
 	winform.btnCopy.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
 	win.delay(200);
 	winform.btnCopy.disabledText = null;
 }
 
-var style = {
-	button = {
-		color = {
-			active=0xFF00FF00;
-			default=0xFF3C3C3C;
-			disabled=0xFF9D9D9D;
-			hover=0xFFFF0000
-		}
-	};
-	checkbox = {
-		color={
-			active=0xFF00FF00;
-			default=0xFF000000;
-			disabled=0xFF9D9D9D;
-			hover=0xFFFF0000
-		};
-		checked={
-			iconText='\uF14A'
-		}
-	};
-	trackbar = {
-		background={
-			default=0xFF23ABD9;
-			disabled=0xFFC6C6C6;
-			hover=0xFF4AC3F2
-		};
-		foreground={
-			default=0xFFFF771C;
-			disabled=0xFF808080;
-			hover=0xFFFF7E24
-		};
-		color={
-			active=0xFFEE630A;
-			default=0xFFFF711E;
-			disabled=0xFF808080;
-			hover=0xFFF88917
-		}
-	}
-}
-
+import style;
 winform.chkPreview.skin(style.checkbox);
 winform.btnRecord.skin(style.button);
 winform.btnCopy.skin(style.button);
@@ -194,7 +195,7 @@ winform.btnWebSite.skin(style.button);
 winform.btnExplore.skin(style.button);
 winform.tbFps.skin(style.trackbar);
 winform.tbFps.setTrackbarRange(1,36);
-winform.tbFps.progressPos = 16;
+winform.tbFps.progressPos = 12;
 winform.tbFps.onPosChanged = function( pos,thumbTrack ){
 	winform.lbFps2.text = pos;
 }
@@ -210,11 +211,12 @@ var setUiLanguage = function(lang){
 	winform.chkPreview.text = uiLanguage.preview;
 	winform.btnCopy.text = uiLanguage.copy;
 	
-	tooltipCtrl.addTool(winform.lbFps,uiLanguage.fps); 
-	tooltipCtrl.addTool(winform.lbFps2,uiLanguage.fps); 
-	tooltipCtrl.addTool(winform.btnExplore,uiLanguage.explore); 
-	tooltipCtrl.addTool(winform.btnWebSite,uiLanguage.git); 
-	tooltipCtrl.addTool(winform.btnRecord,uiLanguage.hotkey); 
+	tooltipCtrl.addTool(winform.lbFps,uiLanguage.fpsTip); 
+	tooltipCtrl.addTool(winform.lbFps2,uiLanguage.fpsTip); 
+	tooltipCtrl.addTool(winform.btnExplore,uiLanguage.exploreTip); 
+	tooltipCtrl.addTool(winform.btnWebSite,uiLanguage.gitTip); 
+	tooltipCtrl.addTool(winform.btnRecord,uiLanguage.hotkeyTip); 
+	tooltipCtrl.addTool(winform.btnCopy,uiLanguage.copyTip); 
 }
 
 var lcid = ::Kernel32.GetUserDefaultLCID()
@@ -229,9 +231,11 @@ else {
 }
 
 import win.ui.minmax;
-win.ui.minmax(winform,200,70);
+win.ui.minmax(winform,201,71);
 winform.adjust = function( cx,cy,wParam ) {	
 	var dpiScaleX = winform.dpiScaleX; 
+	if(winform.sizing) return;
+	
 	winform.btnWebSite.hide = cx/dpiScaleX<605;
 	winform.btnExplore.hide = cx/dpiScaleX<580;
 	winform.lbFps2.hide = cx/dpiScaleX<550;
@@ -244,7 +248,7 @@ winform.adjust = function( cx,cy,wParam ) {
 import win.ui.accelerator;
 var accelerator = win.ui.accelerator({
     { 
-        ctrl = true; shift = true; alt = true; vkey = 0x7B/*_VK_F12*/; 
+        ctrl = true; shift = true; alt = true; vkey = 'Z'#; 
         oncommand = function() {
         	winform.btnRecord.oncommand();
         }
@@ -255,11 +259,70 @@ var accelerator = win.ui.accelerator({
 winform.btnRecord.hkId = winform.reghotkey(
     function(id,mod,vk){
 		winform.btnRecord.oncommand(); 
-	},2/*_MOD_CONTROL*/|1/*_MOD_ALT*/| 4/*_MOD_SHIFT*/,0x7B/*_VK_F12*/
+	},2/*_MOD_CONTROL*/|1/*_MOD_ALT*/| 4/*_MOD_SHIFT*/,'Z'#
 );
 
+winform.onDropFiles = function(files){
+	if(!..io.exist(files[1],4)) return;
+	
+	var bmp = gdip.bitmap(files[1])
+	if(bmp){
+		winform.plusPreview.$previewImagePath = files[1]; 
+		winform.plusPreview.setBackground(bmp,false,true); 
+		
+		winform.chkPreview.disabled = false;
+		winform.btnCopy.disabled = false;
+		winform.chkPreview.checked = true;
+		winform.btnRecord.disabled = true; 
+		
+		holePreview.enable(false);
+	}
+}
+
+
+winform.onEnterSizeMove = function(){
+	if(!winform.chkPreview.checked){
+		winform.sizing = 1;
+	} 
+}
+
 import win.ui.simpleWindow;
-win.ui.simpleWindow(winform);
+var wndFrame = win.ui.simpleWindow(winform);
+
+winform.onExitSizeMove = function(){
+	if(!winform.sizing) return;
+	winform.sizing = false; 
+	
+	winform.btnRecord.show(true);
+	winform.plusPosition.show(false);
+	wndFrame.titlebarMin.show(true);
+    wndFrame.titlebarMax.show(true);
+    winform.adjust();
+} 
+
+winform.wndproc = {
+	[ 0x0214/*_WM_SIZING*/ ] = function(){ 
+		if(winform.sizing = 1){
+			winform.sizing = 2;
+    		winform.plusPosition.show(true);
+    		winform.btnRecord.show(false);
+    		winform.chkPreview.show(false);
+    		winform.btnCopy.show(false);
+    		winform.lbFps.show(false);
+    		winform.lbFps2.show(false);
+    		winform.tbFps.show(false);
+    		winform.btnExplore.show(false);
+    		winform.btnWebSite.show(false);
+    		wndFrame.titlebarMin.show(false);
+    		wndFrame.titlebarMax.show(false);
+		}
+		var x,y,cx,cy = winform.plusPreview.getPos();
+		winform.plusPosition.text = uiLanguage.size +": " + cx + " x " + cy;
+	}
+}
+winform.plusPosition.orphanWindow();
+winform.disableDragFullWindow = false;
 
 winform.show();
+win.setTopmost(winform.hwnd,true);
 win.loopMessage();

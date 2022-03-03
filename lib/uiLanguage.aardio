@@ -3,43 +3,52 @@
 chs = {
 	title = "Gif123 - 录屏工具";
 	record = "录制";
-	hotkey = "热键: Ctrl + Shift + Alt + F12";
 	stop = "停止";
-	fps = "每秒最大帧数";
 	preview = "预览";
 	previewErrMsg = "请先点击「录制」按钮！";
 	previewErrMsg2 = "请先点击「停止」按钮！";
-	explore = "在资源管理器中浏览图像";
 	copy = "复制";
-	git = "查看本软件源代码";
+	size = "宽高";
+	recodeErrMsg = "写入文件失败 : ";
+	exploreTip = "在资源管理器中浏览图像";
+	copyTip = "复制后可直接粘贴到本地文件或其他应用程序。";
+	gitTip = "查看本软件源代码";
+	fpsTip = "每秒最大帧数";
+	hotkeyTip = "热键: Ctrl + Shift + Alt + Z";
 }
 
 cht = {
 	title = "Gif123 - 錄屏工具";
 	record = "錄製";
-	hotkey = "熱鍵: Ctrl + Shift + Alt + F12";
 	stop = "停止";
-	fps = "每秒最大幀數";
 	preview = "預覽";
 	previewErrMsg = "請先點擊「錄製」按鈕！";
 	previewErrMsg2 = "請先點擊「停止」按鈕！";
-	explore = "在資源管理器中瀏覽圖像";
 	copy = "復製";
-	git = "查看本軟件源代碼";
+	size = "宽高"; 
+	recodeErrMsg = "寫入文件失敗 : ";
+	exploreTip = "在資源管理器中瀏覽圖像";
+	copyTip = "復製後可直接粘貼到本地文件或其他應用程序。";
+	gitTip = "查看本軟件源代碼";
+	fpsTip = "每秒最大幀數";
+	hotkeyTip = "熱鍵: Ctrl + Shift + Alt + Z";
 }
 
 en = {
 	title = "Gif123 - Record screen to GIF";
 	record = "Record";
-	hotkey = "Hot key: Ctrl + Shift + Alt + F12";
 	stop = "Stop";
-	fps = "Max Frames Per Second";
 	preview = "Preview";
+	copy = "Copy";  
+	size = "Size";
 	previewErrMsg = "Please click the 「Record」 button first!";
 	previewErrMsg2 = "Please click the 「Stop」 button first!";
-	explore = "Open containing folder and select the GIF file";
-	copy = "Copy";  
-	git = "Get the source code on GitHub";
+	recodeErrMsg = "Error opening file for writing : ";
+	exploreTip = "Open containing folder and select the GIF file";
+	copyTip = "Copy the GIF and paste directly into a file or other applications.";
+	gitTip = "Get the source code on GitHub";
+	fpsTip = "Max Frames Per Second";
+	hotkeyTip = "Hot key: Ctrl + Shift + Alt + Z";
 }
 
 ..table.assign(self,chs);

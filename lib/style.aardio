@@ -1,0 +1,39 @@
+﻿style = {
+	button = {
+		color = {
+			active=0xFF00FF00;
+			default=0xFF3C3C3C;
+			disabled=0xFF9D9D9D;
+			hover=0xFFFF0000
+		}
+	};
+	checkbox = {
+		color={
+			active=0xFF00FF00;
+			default=0xFF000000;
+			disabled=0xFF9D9D9D;
+			hover=0xFFFF0000
+		};
+		checked={
+			iconText='\uF14A'
+		}
+	};
+	trackbar = {
+		background={
+			default=0xFF23ABD9;
+			disabled=0xFFC6C6C6;
+			hover=0xFF4AC3F2
+		};
+		foreground={
+			default=0xFFFF771C;
+			disabled=0xFF808080;
+			hover=0xFFFF7E24
+		};
+		color={
+			active=0xFFEE630A;
+			default=0xFFFF711E;
+			disabled=0xFF808080;
+			hover=0xFFF88917
+		}
+	}
+}
