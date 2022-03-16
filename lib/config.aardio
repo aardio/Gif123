@@ -1,0 +1,21 @@
+//config 配置
+import fsys.config;
+config  = fsys.config(io.appData("/gif123/config/")); 
+
+config.setting.mix(
+	pathRecording = io.appData("gif123/config/recording.~");
+	pathOutput = io.appData("gif123/screenshots.gif"); 
+	gifsicleArgs = "--optimize=3 --colors 256"; // "--optimize=3 --colors 128 --lossy=20";
+	chkOptimize = true;
+	chkShrink = true;
+	chkHighlight = false;
+	highlightColorPalette = {0x90668800,0x90B61E2B,0x81FF8C00,0x80006400,0x8F3A2898,0x8F008B8B};
+	highlightSize = 64;
+	highlightPadding = 13;
+	highlightColor = 0x90668800;
+);
+
+/**intellisense(config)
+? = 配置文件名\n!fsys_table.
+setting = 配置文件名\n!fsys_table.
+end intellisense**/

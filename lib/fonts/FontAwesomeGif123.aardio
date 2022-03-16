@@ -1,0 +1,10 @@
+﻿import fonts;
+
+namespace fonts.FontAwesomeGif123{ 
+    family = ..fonts.addFamily($"~/lib/fonts/.res/FontAwesomeGif123.ttf") 
+}
+
+/**intellisense()
+fonts.FontAwesomeGif123 = 导入图标字体,\n所有图标请参考aardio工具->文本文件->图标字体
+fonts.FontAwesomeGif123.family = GDI+字样集合,可用于plus控件,gdip等库函数,\n!gdipfamily.
+end intellisense**/
