@@ -1,58 +1,6 @@
 ﻿//uiLanguage 多语言
 namespace uiLanguage;
 
-chs = {
-	title = "Gif123 - 录屏工具";
-	record = "录制";
-	stop = "停止";
-	preview = "预览";
-	notFound = "请先点击「录制」按钮！";
-	stopRecoding = "请先点击「停止」按钮！";
-	copy = "复制";
-	size = "宽高";
-	recodeErrMsg = "写入文件失败 : ";
-	exploreTip = "在资源管理器中浏览图像";
-	copyTip = "复制后可直接粘贴到本地文件或其他应用程序。";
-	gitTip = "查看本软件源代码";
-	fpsTip = "每秒最大帧数";
-	hotkeyTip = "热键: Ctrl + Shift + Alt + Z";
-	autoShrink = "高 DPI 屏幕自动缩小图像分辨率";
-	optimizeGif = "优化 GIF 文件以缩小体积";  
-	gifsicleMan = "Gifsicle 压缩参数说明";
-	highlightMouse = "录屏时在鼠标指针处启用高亮光圈";
-	highlightSize = "光圈大小:";
-	highlightPadding = "动画边距:";
-	highlightColor = "光圈颜色";
-	save = "保存";
-	settings = "设置";
-}
-
-cht = {
-	title = "Gif123 - 錄屏工具";
-	record = "錄製";
-	stop = "停止";
-	preview = "預覽";
-	notFound = "請先點擊「錄製」按鈕！";
-	stopRecoding = "請先點擊「停止」按鈕！";
-	copy = "復製";
-	size = "宽高"; 
-	recodeErrMsg = "寫入文件失敗 : ";
-	exploreTip = "在資源管理器中瀏覽圖像";
-	copyTip = "復製後可直接粘貼到本地文件或其他應用程序。";
-	gitTip = "查看本軟件源代碼";
-	fpsTip = "每秒最大幀數";
-	hotkeyTip = "熱鍵: Ctrl + Shift + Alt + Z";
-	autoShrink = "高 DPI 屏幕自動縮小圖像分辨率";
-	optimizeGif = "優化 GIF 文件以縮小體積";  
-	gifsicleMan = "Gifsicle 壓縮參數說明";
-	save = "保存";
-	settings = "設置";
-	highlightMouse = "錄屏時在鼠標指針處啟用高亮光圈";
-	highlightSize = "光圈大小:";
-	highlightPadding = "動畫邊距:";
-	highlightColor = "光圈顏色";
-}
-
 en = {
 	title = "Gif123 - Record screen to GIF";
 	record = "Record";
@@ -77,6 +25,110 @@ en = {
 	highlightColor = "Color:";
 	save = "Save";
 	settings = "Settings";
+}
+
+chs = {
+	title = "Gif123 - 录屏工具";
+	record = "录制";
+	stop = "停止";
+	preview = "预览";
+	notFound = "请先点击「录制」按钮！";
+	stopRecoding = "请先点击「停止」按钮！";
+	copy = "复制";
+	size = "宽高";
+	recodeErrMsg = "写入文件失败 : ";
+	exploreTip = "在资源管理器中浏览图像";
+	copyTip = "复制后可直接粘贴到本地文件或其他应用程序。";
+	gitTip = "查看本软件源代码";
+	fpsTip = "每秒最大帧数";
+	hotkeyTip = "热键: Ctrl + Shift + Alt + Z";
+	autoShrink = "高 DPI 屏幕自动缩小图像分辨率";
+	optimizeGif = "优化 GIF 文件以缩小体积";  
+	gifsicleMan = "Gifsicle 压缩参数说明";
+	highlightMouse = "录屏时在鼠标指针处启用高亮光圈";
+	highlightSize = "光圈大小:";
+	highlightPadding = "动画边距:";
+	highlightColor = "光圈颜色:";
+	save = "保存";
+	settings = "设置";
+}
+
+cht = {
+	title = "Gif123 - 錄屏工具";
+	record = "錄製";
+	stop = "停止";
+	preview = "預覽";
+	notFound = "請先點擊「錄製」按鈕！";
+	stopRecoding = "請先點擊「停止」按鈕！";
+	copy = "複製";
+	size = "寬高";
+	recodeErrMsg = "寫入文件失敗 : ";
+	exploreTip = "在資源管理器中瀏覽圖像";
+	copyTip = "複製後可直接粘貼到本地文件或其他應用程式。";
+	gitTip = "查看本軟體原始碼";
+	fpsTip = "每秒最大幀數";
+	hotkeyTip = "熱鍵: Ctrl + Shift + Alt + Z";
+	autoShrink = "高 DPI 螢幕自動縮小圖像解析度";
+	optimizeGif = "優化 GIF 文件以縮小體積";  
+	gifsicleMan = "Gifsicle 壓縮參數說明";
+	highlightMouse = "錄屏時在滑鼠指針處啟用高亮光圈";
+	highlightSize = "光圈大小:";
+	highlightPadding = "動畫邊距:";
+	highlightColor = "光圈顏色:";
+	save = "保存";
+	settings = "設置";
+}
+
+jp = {
+	title = "Gif123 - 画面録画ソフト";
+	record = "録画";
+	stop = "停止";
+	preview = "プレビュー";
+	notFound = "まず「録画」ボタンをクリックしてください!";
+	stopRecoding = "まず「停止」ボタンをクリックしてください!";
+	copy = "コピー";
+	size = "サイズ";
+	recodeErrMsg = "ファイルの書き込みに失敗しました: ";
+	exploreTip = "含まれているフォルダを開き、GIFファイルを選択します";
+	copyTip = "コピー後、ローカルファイルまたは他のアプリケーションに直接貼り付けることができます。";
+	gitTip = "ソースコード (GitHub)";
+	fpsTip = "最大フレーム毎秒";
+	hotkeyTip = "ショートカットキー: Ctrl + Shift + Alt + Z";
+	autoShrink = "高 DPI ディスプレイでの自動縮小";
+	optimizeGif = "GIFを最適化して、Gifsicle でサイズを縮小します";  
+	gifsicleMan = "Gifsicle マニュアル";
+	highlightMouse = "マウスカーソルを強調表示して";
+	highlightSize = "サイズ:";
+	highlightPadding = "マージン:";
+	highlightColor = "色:";
+	save = "保存";
+	settings = "設定";
+}
+
+ko = {
+	title = "Gif123 - 화면 녹화 프로그램";
+	record = "녹화";
+	stop = "정지";
+	preview = "미리보기";
+	notFound = "먼저「녹화」버튼을 눌러주세요!";
+	stopRecoding = "먼저「정지」단추를 눌러 주십시오！";
+	copy = "복사";
+	size = "크기";
+	recodeErrMsg = "파일에 쓰기 실패:";
+	exploreTip = "리소스 매니저에서 이미지 찾아보기";
+	copyTip = "복사한 후 로컬 파일이나 다른 응용 프로그램에 직접 붙여넣을 수 있습니다.";
+	gitTip = "소스 코드 (GitHub)";
+	fpsTip = "최대 초당 프레임 수";
+	hotkeyTip = "단축키: Ctrl + Shift + Alt + Z";
+	autoShrink = "높은 DPI 디스플레이에서 자동 이미지 해상도 축소";
+	optimizeGif = "Gifsicle을 사용하여 파일 볼륨을 줄이기 위해 GIF 이미지 최적화";  
+	gifsicleMan = "Gifsicle 사용 설명서";
+	highlightMouse = "화면을 녹화할 때 마우스 포인터에서 하이라이트 조리개 활성화";
+	highlightSize = "크기:";
+	highlightPadding = "바깥 여백:";
+	highlightColor = "색상:";
+	save = "저장";
+	settings = "설정 파일";
 }
 
 ..table.assign(self,chs);

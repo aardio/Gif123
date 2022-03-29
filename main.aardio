@@ -244,14 +244,33 @@ var setUiLanguage = function(lang){
 	tooltipCtrl.addTool(mainForm.btnWebSite,uiLanguage.gitTip); 
 	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.hotkeyTip); 
 	tooltipCtrl.addTool(mainForm.btnCopy,uiLanguage.copyTip); 
-	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings); 
+	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings);
 }
 
-var lcid = ::Kernel32.GetUserDefaultLCID()
-if( lcid==1028 || lcid == 3076 || lcid == 5124 ){
+var lcid = ::Kernel32.GetUserDefaultLCID();
+if( lcid==0x404/*zh-TW*/ || lcid == 0x0C04/*zh-HK*/ || lcid == 0x1404/*zh-MO*/ ){
 	setUiLanguage(uiLanguage.cht);
 }
-elseif( lcid!=2052 ){
+elseif( lcid==0x0412/*ko-KR*/ ){
+	setUiLanguage(uiLanguage.ko);
+	mainForm.btnRecord.right = mainForm.btnRecord.right - 10;
+	mainForm.chkPreview.left = mainForm.chkPreview.left - 10;
+}
+elseif( lcid==0x0411/*ja-JP*/ ){
+	setUiLanguage(uiLanguage.jp);
+	mainForm.btnRecord.right = mainForm.btnRecord.right - 10;
+	mainForm.chkPreview.left = mainForm.chkPreview.left - 10;
+	mainForm.chkPreview.right = mainForm.chkPreview.right +  15;
+ 	
+	var x,y,cx,cy = mainForm.btnCopy.getPos();
+	mainForm.btnCopy.setPos(x+20,y,cx+10,cy);
+	 
+	for(i,ctrl in ({mainForm.lbFps,mainForm.lbFps2,mainForm.tbFps,mainForm.btnExplore,mainForm.btnWebSite,mainForm.btnSettings})){
+		var x,y = ctrl.getPos()
+		ctrl.setPos(x+25,y);
+	} 
+}
+elseif( lcid!=0x804/*zh-CN*/ && lcid!=0x1004/*zh-SG*/ ){
 	setUiLanguage(uiLanguage.en);
 }
 else {
@@ -307,7 +326,6 @@ mainForm.onDropFiles = function(files){
 	}
 }
 
-
 mainForm.onEnterSizeMove = function(){
 	if(!mainForm.chkPreview.checked){
 		mainForm.sizing = 1;
@@ -361,7 +379,6 @@ mainForm.btnSettings.skin(
 	}
 )
 mainForm.btnSettings.oncommand = function(id,event){
-	
 	var frmChild = mainForm.loadForm("\dlg\setting.aardio");
 	frmChild.doModal();
 }
