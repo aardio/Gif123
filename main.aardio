@@ -1,7 +1,8 @@
 import config;
 import uiLanguage;
-import fonts.FontAwesomeGif123;
+import fonts.FontAwesomeGif123; 
 import soImage; 
+import fsys.environment;
 import win.region.hole;
 import win.ui.atom;
 import win.ui;
@@ -14,9 +15,10 @@ btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left"
 btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=12};
 btnWebSite={cls="plus";text='\uF09B';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=9};
 chkPreview={cls="plus";text="预览";left=79;top=0;right=157;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
+editGifsicleArgs={cls="edit";left=201;top=516;right=531;bottom=540;align="right";db=1;dr=1;edge=1;hide=1;multiline=1;z=13};
 lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
 lbFps2={cls="plus";text="12";left=361;top=7;right=385;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
-plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;bgcolor=4752084;db=1;dr=1;forecolor=16777215;hide=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;z=11};
+plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;align="left";bgcolor=4752084;clipBk=false;db=1;dr=1;forecolor=16777215;hide=1;iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=10;top=1}};iconText='\uF255';notify=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;textPadding={left=24};z=11};
 plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=10789024;db=1;dl=1;dr=1;dt=1;repeat="scale";z=2};
 tbFps={cls="plus";left=267;top=9;right=358;bottom=22;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=6};
 titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1}
@@ -52,21 +54,26 @@ mainForm.btnRecord.oncommand = function(id,event){
 		
 		mainForm.btnRecord.disabledText = { '\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
 		
-		if(config.setting.chkOptimize){
-			thread.invokeAndWait(
-				function(pathRecording,gifsicleArgs){
-					import process.gifsicle;
-					var out = process.gifsicle.get(pathRecording,,gifsicleArgs);
-				} ,config.setting.pathRecording,config.setting.gifsicleArgs
-			) 	
+		var outputFilename = config.setting.outputFilename;
+		if(string.indexOf(outputFilename,"%")){
+			outputFilename = tostring(time(),outputFilename)
 		}
 		
+		config.setting.pathOutput = io.joinpath( fsys.environment.expand(config.setting.outputDir),outputFilename);
+		fsys.copy(config.__pathRecording,config.setting.pathOutput);
 		
-		fsys.copy(config.setting.pathRecording,config.setting.pathOutput);
+		if(config.setting.chkOptimize){
+			thread.invokeAndWait(
+				function(pathOutput,gifsicleArgs){
+					import process.gifsicle;
+					var out = process.gifsicle.get(pathOutput,,gifsicleArgs);
+				} ,config.setting.pathOutput,config.setting.gifsicleArgs
+			) 	
+		}
+		 
 		mainForm.setCurrentImage(config.setting.pathOutput);
 		
 		mainForm.btnRecord.disabledText = null;
-	
 		mainForm.chkPreview.disabled = false;
 		mainForm.btnCopy.disabled = false;
 		mainForm.tbFps.disabled = false;
@@ -79,9 +86,9 @@ mainForm.btnRecord.oncommand = function(id,event){
 		return;
 	}
 	
-	gifFile = soImage.gifFile(config.setting.pathRecording); 
+	gifFile = soImage.gifFile(config.__pathRecording); 
 	if(!gifFile){
-		return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.setting.pathRecording)
+		return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording)
 	}
 	
 	mainForm.btnRecord.recording = true;
@@ -168,23 +175,34 @@ mainForm.chkPreview.oncommand = function(id,event){
 		
 		var buf = string.loadBuffer(previewPath);
 		mainForm.plusPreview.setBackground(buf,false,true);
+		string.save(config.__pathGifsicleTemp,buf)
+		 
+		mainForm.plusPosition.iconText = '\uF255';
 		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format();
-		mainForm.plusPosition.show(true);
+		mainForm.plusPosition.show(true); 
+		
+		mainForm.editGifsicleArgs.text = config.setting.gifsicleArgs;
+		mainForm.editGifsicleArgs.show(true);
 		
 		mainForm.plusPreview.predraw();
 		holePreview.enable(false);
 		mainForm.disableDragFullWindow = true;
+		
+		mainForm.setFocus();
 	}
 	else {
 		holePreview.enable(true);
 		mainForm.disableDragFullWindow = false;
 		mainForm.btnRecord.disabled = false;
 		mainForm.plusPosition.show(false);
+		mainForm.editGifsicleArgs.show(false); 
+		mainForm.plusPosition.iconText = "";
 		
 		var old = mainForm.plusPreview.setBackground(null);
 		if(old){ old.dispose(); }
 	}
 }
+mainForm.plusPosition.iconText = "";
 
 mainForm.chkPreview.disabled = true;
 
@@ -217,6 +235,7 @@ import style;
 mainForm.chkPreview.skin(style.checkbox);
 mainForm.btnRecord.skin(style.record);
 mainForm.btnCopy.skin(style.button);
+mainForm.btnSettings.skin(style.button);
 mainForm.btnWebSite.skin(style.button);
 mainForm.btnExplore.skin(style.button);
 mainForm.tbFps.skin(style.trackbar);
@@ -228,7 +247,6 @@ mainForm.tbFps.onPosChanged = function( pos,thumbTrack ){
 
 import win.ui.tooltip;
 var tooltipCtrl = win.ui.tooltip(mainForm);
- 
 var setUiLanguage = function(lang){
 	..table.assign(uiLanguage,lang);
 	
@@ -245,6 +263,7 @@ var setUiLanguage = function(lang){
 	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.hotkeyTip); 
 	tooltipCtrl.addTool(mainForm.btnCopy,uiLanguage.copyTip); 
 	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings);
+	tooltipCtrl.addTool(mainForm.plusPosition,uiLanguage.optimizeGif); 
 }
 
 var lcid = ::Kernel32.GetUserDefaultLCID();
@@ -291,6 +310,8 @@ mainForm.adjust = function( cx,cy,wParam ) {
 	mainForm.lbFps.hide = cx/dpiScaleX<519;
 	mainForm.btnCopy.hide = cx/dpiScaleX<360;
 	mainForm.chkPreview.hide = cx/dpiScaleX<300;
+	
+	if(mainForm.chkPreview.checked) mainForm.editGifsicleArgs.hide = cx/dpiScaleX<550;
 };
 
 import win.ui.accelerator;
@@ -336,7 +357,9 @@ import win.ui.simpleWindow;
 var wndFrame = win.ui.simpleWindow(mainForm);
 
 mainForm.onExitSizeMove = function(){
-	if(!mainForm.sizing) return;
+	if(!mainForm.sizing) {
+		return;
+	}
 	mainForm.sizing = false; 
 	
 	mainForm.btnRecord.show(true);
@@ -349,6 +372,8 @@ mainForm.onExitSizeMove = function(){
 
 mainForm.wndproc = {
 	[ 0x0214/*_WM_SIZING*/ ] = function(){ 
+		if(!mainForm.sizing) return;
+		
 		if(mainForm.sizing = 1){
 			mainForm.sizing = 2;
     		mainForm.plusPosition.show(true);
@@ -365,19 +390,12 @@ mainForm.wndproc = {
     		wndFrame.titlebarMax.show(false);
     		wndFrame.titlebarClose.show(false);
 		}
+		
 		var x,y,cx,cy = mainForm.plusPreview.getPos();
 		mainForm.plusPosition.text = uiLanguage.size +": " + cx + " x " + cy;
 	}
 }
 
-mainForm.btnSettings.skin(
-	background = { 
-		hover = "/res/images/btn-hover.png";
-		focus = "/res/images/btn-focus.jpg";
-		active = "/res/images/btn-active.png";
-		disabled = "/res/images/btn-disabled.png"; 
-	}
-)
 mainForm.btnSettings.oncommand = function(id,event){
 	var frmChild = mainForm.loadForm("\dlg\setting.aardio");
 	frmChild.doModal();
@@ -385,6 +403,58 @@ mainForm.btnSettings.oncommand = function(id,event){
 
 mainForm.plusPosition.orphanWindow();
 mainForm.disableDragFullWindow = false;
+
+mainForm.plusPosition.skin( {
+		background={
+			default=0xFF77B200;
+			disabled=0xFFCCCCCC;
+			hover=0xFF6600B3
+		};
+		color={
+			default=0xFF000000;
+			disabled=0xFF6D6D6D
+		}
+	} )
+
+mainForm.plusPosition.oncommand = function(id,event){
+	var outPath = mainForm.getCurrentImage();
+	if(!outPath) return;
+	
+	var inPath;
+	if(outPath == config.setting.pathOutput){
+		inPath = config.__pathRecording;
+	}
+	else {
+		inPath = config.__pathGifsicleTemp;
+	}
+	
+	var gifsicleArgs = mainForm.editGifsicleArgs.text;
+	if(string.indexOf(gifsicleArgs,"--help") || string.indexOf(gifsicleArgs,"?")){
+		import process;
+		process.openUrl("https://www.lcdf.org/gifsicle/man.html");
+		return;	
+	}
+
+	mainForm.plusPosition.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
+	var ret = thread.invokeAndWait(
+		function(inPath,outPath,gifsicleArgs){
+			import process.gifsicle;
+			return process.gifsicle.get(inPath,outPath,gifsicleArgs);
+		} ,inPath,outPath,gifsicleArgs
+	);
+	
+	mainForm.plusPosition.disabledText = null;	
+	if(#ret){
+		mainForm.msgboxErr(ret);
+	}
+	
+	var buf = string.loadBuffer(outPath);
+	if(#buf){
+		mainForm.plusPreview.setBackground(buf,false,true);
+		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format()		
+	} 
+}
+mainForm.editGifsicleArgs.orphanWindow()
 
 mainForm.show();
 win.setTopmost(mainForm.hwnd,true);

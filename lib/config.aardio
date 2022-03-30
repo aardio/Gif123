@@ -3,9 +3,10 @@ import fsys.config;
 config  = fsys.config(io.appData("/gif123/config/")); 
 
 config.setting.mix(
-	pathRecording = io.appData("gif123/config/recording.~");
 	pathOutput = io.appData("gif123/screenshots.gif"); 
-	gifsicleArgs = "--optimize=3 --colors 256"; // "--optimize=3 --colors 128 --lossy=20";
+	outputDir = "%LocalAppData%/gif123"; 
+	outputFilename = "screenshots.gif";
+	gifsicleArgs = "--optimize=3 --colors 256 --lossy=0"; // "--optimize=3 --colors 128 --lossy=20";
 	chkOptimize = true;
 	chkShrink = true;
 	chkHighlight = false;
@@ -14,6 +15,12 @@ config.setting.mix(
 	highlightPadding = 13;
 	highlightColor = 0x90668800;
 );
+
+//不需要序列化的配置名字前请添加下划线
+namespace config {
+	__pathRecording = ..io.appData("gif123/config/recording.~");
+	__pathGifsicleTemp = ..io.appData("gif123/config/gifsicle.~"); 
+}
 
 /**intellisense(config)
 ? = 配置文件名\n!fsys_table.

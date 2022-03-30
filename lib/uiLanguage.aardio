@@ -25,6 +25,10 @@ en = {
 	highlightColor = "Color:";
 	save = "Save";
 	settings = "Settings";
+	outputFolder = "Output folder：";
+	outputFilename = "Output filename：";
+	outputFolderNotExists = "The output folder does not exist.";
+	outputFilenameInvalid = "The output file name contains invalid characters. Please enter a valid file name."
 }
 
 chs = {
@@ -43,7 +47,7 @@ chs = {
 	fpsTip = "每秒最大帧数";
 	hotkeyTip = "热键: Ctrl + Shift + Alt + Z";
 	autoShrink = "高 DPI 屏幕自动缩小图像分辨率";
-	optimizeGif = "优化 GIF 文件以缩小体积";  
+	optimizeGif = "调用 Gifsicle 优化 GIF 文件以缩小体积";  
 	gifsicleMan = "Gifsicle 压缩参数说明";
 	highlightMouse = "录屏时在鼠标指针处启用高亮光圈";
 	highlightSize = "光圈大小:";
@@ -51,6 +55,10 @@ chs = {
 	highlightColor = "光圈颜色:";
 	save = "保存";
 	settings = "设置";
+	outputFolder = "输出目录：";
+	outputFilename = "输出文件名：";
+	outputFolderNotExists = "错误的输出目录。";
+	outputFilenameInvalid = "无效文件名。"
 }
 
 cht = {
@@ -69,7 +77,7 @@ cht = {
 	fpsTip = "每秒最大幀數";
 	hotkeyTip = "熱鍵: Ctrl + Shift + Alt + Z";
 	autoShrink = "高 DPI 螢幕自動縮小圖像解析度";
-	optimizeGif = "優化 GIF 文件以縮小體積";  
+	optimizeGif = "調用 Gifsicle 優化 GIF 文件以縮小體積";  
 	gifsicleMan = "Gifsicle 壓縮參數說明";
 	highlightMouse = "錄屏時在滑鼠指針處啟用高亮光圈";
 	highlightSize = "光圈大小:";
@@ -77,6 +85,10 @@ cht = {
 	highlightColor = "光圈顏色:";
 	save = "保存";
 	settings = "設置";
+	outputFolder = "輸出目錄：";
+	outputFilename = "輸出文件名：";
+	outputFolderNotExists = "錯誤的輸出目錄。";
+	outputFilenameInvalid = "無效文件名。."
 }
 
 jp = {
@@ -102,7 +114,11 @@ jp = {
 	highlightPadding = "マージン:";
 	highlightColor = "色:";
 	save = "保存";
-	settings = "設定";
+	settings = "設定"; 
+	outputFolder = "出力ディレクトリ:";
+	outputFilename = "出力ファイル名：";
+	outputFolderNotExists = "間違った出力ディレクトリ。";
+	outputFilenameInvalid = "無効なファイル名。"
 }
 
 ko = {
@@ -128,7 +144,11 @@ ko = {
 	highlightPadding = "바깥 여백:";
 	highlightColor = "색상:";
 	save = "저장";
-	settings = "설정 파일";
+	settings = "설정 파일"; 
+	outputFolder = "출력 디렉토리:"; 
+	outputFilename = "출력 파일 이름:"; 
+	outputFolderNotExists = "잘못된 출력 디렉토리."; 
+	outputFilenameInvalid = "잘못된 파일 이름입니다.";
 }
 
 ..table.assign(self,chs);
