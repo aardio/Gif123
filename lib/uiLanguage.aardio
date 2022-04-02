@@ -29,7 +29,8 @@ en = {
 	outputFolder = "Output folder：";
 	outputFilename = "Output filename：";
 	outputFolderNotExists = "The output folder does not exist.";
-	outputFilenameInvalid = "The output file name contains invalid characters. Please enter a valid file name."
+	outputFilenameInvalid = "The output file name contains invalid characters. Please enter a valid file name.";
+	changePointerSize = "Change mouse pointer size";
 }
 
 chs = {
@@ -57,10 +58,11 @@ chs = {
 	highlightColor = "光圈颜色:";
 	save = "保存";
 	settings = "设置";
-	outputFolder = "输出目录：";
-	outputFilename = "输出文件名：";
+	outputFolder = "输出目录:";
+	outputFilename = "输出文件名:";
 	outputFolderNotExists = "错误的输出目录。";
-	outputFilenameInvalid = "无效文件名。"
+	outputFilenameInvalid = "无效文件名。";
+	changePointerSize = "改变鼠标指针大小";
 }
 
 cht = {
@@ -88,10 +90,11 @@ cht = {
 	highlightColor = "光圈顏色:";
 	save = "保存";
 	settings = "設置";
-	outputFolder = "輸出目錄：";
-	outputFilename = "輸出文件名：";
+	outputFolder = "輸出目錄:";
+	outputFilename = "輸出文件名:";
 	outputFolderNotExists = "錯誤的輸出目錄。";
-	outputFilenameInvalid = "無效文件名。."
+	outputFilenameInvalid = "無效文件名。";
+	changePointerSize = "改變滑鼠指針大小";
 }
 
 jp = {
@@ -120,9 +123,10 @@ jp = {
 	save = "保存";
 	settings = "設定"; 
 	outputFolder = "出力ディレクトリ:";
-	outputFilename = "出力ファイル名：";
+	outputFilename = "出力ファイル名:";
 	outputFolderNotExists = "間違った出力ディレクトリ。";
-	outputFilenameInvalid = "無効なファイル名。"
+	outputFilenameInvalid = "無効なファイル名。";
+	changePointerSize = "マウスポインタのサイズを変更";
 }
 
 ko = {
@@ -142,7 +146,7 @@ ko = {
 	fpsTip = "최대 초당 프레임 수";
 	hotkeyTip = "단축키: Ctrl + Shift + Alt + Z / Ctrl + Z";
 	autoShrink = "높은 DPI 디스플레이에서 자동 이미지 해상도 축소";
-	optimizeGif = "Gifsicle을 사용하여 파일 볼륨을 줄이기 위해 GIF 이미지 최적화";  
+	optimizeGif = "Gifsicle 호출하여 GIF 파일 볼륨 축소";  
 	gifsicleMan = "Gifsicle 사용 설명서";
 	highlightMouse = "화면을 녹화할 때 마우스 포인터에서 하이라이트 조리개 활성화";
 	highlightSize = "크기:";
@@ -154,6 +158,7 @@ ko = {
 	outputFilename = "출력 파일 이름:"; 
 	outputFolderNotExists = "잘못된 출력 디렉토리."; 
 	outputFilenameInvalid = "잘못된 파일 이름입니다.";
+	changePointerSize = "마우스 포인터 크기 변경";
 }
 
 ..table.assign(self,chs);

@@ -59,10 +59,10 @@ mainForm.btnRecord.oncommand = function(id,event){
 		
 		if(config.setting.chkOptimize){
 			thread.invokeAndWait(
-				function(pathOutput,gifsicleArgs){
+				function(pathOutput,gifsicleArgs2){
 					import process.gifsicle;
-					var out = process.gifsicle.get(pathOutput,,gifsicleArgs);
-				} ,config.setting.pathOutput,config.setting.gifsicleArgs
+					var out = process.gifsicle.get(pathOutput,,gifsicleArgs2);
+				} ,config.setting.pathOutput,config.setting.gifsicleArgs2
 			) 	
 		}
 		 
@@ -148,7 +148,7 @@ mainForm.chkPreview.oncommand = function(id,event){
 		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format();
 		mainForm.plusPosition.show(true); 
 		
-		mainForm.editGifsicleArgs.text = config.setting.gifsicleArgs;
+		mainForm.editGifsicleArgs.text = config.setting.gifsicleArgs2;
 		mainForm.editGifsicleArgs.show(true);
 		
 		mainForm.plusPreview.predraw();
@@ -385,8 +385,8 @@ mainForm.plusPosition.oncommand = function(id,event){
 		inPath = config.__pathGifsicleTemp;
 	}
 	
-	var gifsicleArgs = mainForm.editGifsicleArgs.text;
-	if(string.indexOf(gifsicleArgs,"--help") || string.indexOf(gifsicleArgs,"?")){
+	var gifsicleArgs2 = mainForm.editGifsicleArgs.text;
+	if(string.indexOf(gifsicleArgs2,"--help") || string.indexOf(gifsicleArgs2,"?")){
 		import process;
 		process.openUrl("https://www.lcdf.org/gifsicle/man.html");
 		return;	
@@ -395,10 +395,10 @@ mainForm.plusPosition.oncommand = function(id,event){
 	mainForm.chkPreview.disabled = true;
 	mainForm.plusPosition.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
 	var ret = thread.invokeAndWait(
-		function(inPath,outPath,gifsicleArgs){
+		function(inPath,outPath,gifsicleArgs2){
 			import process.gifsicle;
-			return process.gifsicle.get(inPath,outPath,gifsicleArgs);
-		} ,inPath,outPath,gifsicleArgs
+			return process.gifsicle.get(inPath,outPath,gifsicleArgs2);
+		} ,inPath,outPath,gifsicleArgs2
 	);
 	
 	mainForm.plusPosition.disabledText = null;	
@@ -446,6 +446,10 @@ var accelerator = win.ui.accelerator({
         }
     };   
 },mainForm );
+
+mainForm.onDestroy = function(){
+    recorder.stop();
+}
 
 mainForm.show();
 win.setTopmost(mainForm.hwnd,true);

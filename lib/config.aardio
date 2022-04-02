@@ -6,7 +6,7 @@ config.setting.mix(
 	pathOutput = io.appData("gif123/screenshots.gif"); 
 	outputDir = "%LocalAppData%/gif123"; 
 	outputFilename = "screenshots.gif";
-	gifsicleArgs = "--optimize=3 --colors 256 --lossy=0"; // "--optimize=3 --colors 128 --lossy=20";
+	gifsicleArgs2 = "--optimize=3 --colors 256 --lossy=0"; // "--optimize=3 --colors 128 --lossy=20";
 	chkOptimize = true;
 	chkShrink = true;
 	chkHighlight = false;
@@ -14,6 +14,7 @@ config.setting.mix(
 	highlightSize = 64;
 	highlightPadding = 13;
 	highlightColor = 0x90668800;
+	pointerSize = 100;
 );
 
 //不需要序列化的配置名字前请添加下划线

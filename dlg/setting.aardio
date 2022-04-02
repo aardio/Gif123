@@ -5,54 +5,59 @@ import fonts.FontAwesomeGif123;
 import mouse.highlighter;
 import win.ui;
 /*DSG{{*/
-var winform = win.form(text="aardio form";right=457;bottom=534;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
+var winform = win.form(text="aardio form";right=457;bottom=520;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
 winform.add(
 bkplus={cls="bkplus";left=1;top=-1;right=459;bottom=27;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=6};
-btnGifsicleArgsExample={cls="plus";text="--optimize=3 --colors 128 --lossy=20";left=174;top=241;right=421;bottom=265;align="right";color=8388608;font=LOGFONT(h=-13);notify=1;textPadding={left=5};z=9};
-btnGifsicleHelp={cls="plus";text="Gifsicle manual";left=265;top=267;right=421;bottom=291;align="right";color=8388608;font=LOGFONT(h=-13);notify=1;textPadding={left=5};z=5};
-btnOutputDir={cls="plus";text='\uF07C';left=400;top=40;right=421;bottom=62;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=1};
-btnOutputFilenameExample={cls="plus";text="%y-%m-%d %H-%M-%S.gif";left=232;top=106;right=421;bottom=130;align="right";color=8388608;font=LOGFONT(h=-13);notify=1;textPadding={left=5};z=32};
-btnSave={cls="plus";text="Save";left=322;top=488;right=421;bottom=518;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF00C';notify=1;textPadding={left=32};z=7};
-chkHighlightMouse={cls="plus";text="Highlight mouse cursor while recording screen.";left=65;top=304;right=413;bottom=334;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
-chkOptimize={cls="plus";text="Optimize output GIF animations for space";left=62;top=180;right=419;bottom=210;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=4};
-chkShrink={cls="plus";text="Auto shrink on high DPI display";left=62;top=145;right=385;bottom=175;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=2};
-editColor={cls="plus";text="#66880055";left=135;top=415;right=306;bottom=441;align="left";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=17};
-editGifsicleArgs={cls="plus";left=81;top=212;right=421;bottom=238;align="right";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=3};
-editOutputDir={cls="plus";text="11";left=154;top=36;right=421;bottom=62;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=33};
-editOutputFilename={cls="plus";left=154;top=71;right=421;bottom=97;align="right";border={bottom=1;color=-6908266};editable="edit";font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=29};
-lbHighlightColor={cls="plus";text="Color：";left=49;top=429;right=128;bottom=446;align="right";color=7895160;dl=1;dt=1;notify=1;z=18};
-lbHighlightPadding={cls="plus";text="Padding：";left=49;top=387;right=128;bottom=404;align="right";color=7895160;dl=1;dt=1;notify=1;z=15};
-lbHighlightPaddingValue={cls="plus";text="12";left=318;top=390;right=373;bottom=407;align="left";color=7895160;dl=1;dt=1;notify=1;z=16};
-lbHighlightSize={cls="plus";text="Size：";left=49;top=353;right=128;bottom=370;align="right";color=7895160;dl=1;dt=1;notify=1;z=11};
-lbHighlightSizeValue={cls="plus";text="12";left=318;top=357;right=371;bottom=374;align="left";color=7895160;dl=1;dt=1;notify=1;z=12};
-lbOutputFilename={cls="plus";text="Output filename：";left=6;top=83;right=155;bottom=103;align="right";dl=1;dt=1;notify=1;z=31};
-lbOutputFolder={cls="plus";text="Output folder：";left=4;top=45;right=155;bottom=65;align="right";dl=1;dt=1;notify=1;z=30};
+btnGifsicleHelp={cls="plus";text="Gifsicle manual";left=265;top=125;right=421;bottom=149;align="right";clip=1;color=8388608;notify=1;textPadding={left=5};z=5};
+btnOutputDir={cls="plus";text='\uF07C';left=400;top=384;right=421;bottom=406;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=1};
+btnOutputFilenameExample={cls="plus";text="%y%m%d %H%M%S.gif";left=232;top=439;right=421;bottom=463;align="right";clip=1;color=8388608;notify=1;textPadding={left=5};z=31};
+btnPointerSetting={cls="plus";text='\uF013';left=359;top=343;right=384;bottom=368;border={radius=6};clip=1;color=9868950;font=LOGFONT(name='FontAwesomeGif123');hide=1;notify=1;z=36};
+btnSave={cls="plus";text="Save";left=259;top=475;right=358;bottom=503;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF00C';notify=1;textPadding={left=32};z=7};
+chkHighlightMouse={cls="plus";text="Highlight mouse cursor while recording screen.";left=62;top=150;right=410;bottom=180;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=9};
+chkOptimize={cls="plus";text="Optimize output GIF animations for space";left=62;top=69;right=443;bottom=99;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=4};
+chkPointerSize={cls="plus";text="Change mouse pointer size";left=62;top=310;right=410;bottom=340;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=33};
+chkShrink={cls="plus";text="Auto shrink on high DPI display";left=62;top=34;right=443;bottom=64;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=2};
+editColor={cls="plus";text="#66880055";left=135;top=245;right=306;bottom=271;align="left";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=16};
+editGifsicleArgs={cls="plus";left=81;top=101;right=421;bottom=127;align="right";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=3};
+editOutputDir={cls="plus";left=133;top=380;right=421;bottom=406;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=32};
+editOutputFilename={cls="plus";left=133;top=415;right=421;bottom=441;align="right";border={bottom=1;color=-6908266};editable="edit";font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=28};
+lbHighlightColor={cls="plus";text="Color：";left=49;top=259;right=128;bottom=276;align="right";color=7895160;dl=1;dt=1;notify=1;z=17};
+lbHighlightPadding={cls="plus";text="Padding：";left=49;top=221;right=128;bottom=238;align="right";color=7895160;dl=1;dt=1;notify=1;z=14};
+lbHighlightPaddingValue={cls="plus";text="12";left=318;top=224;right=373;bottom=241;align="left";color=7895160;dl=1;dt=1;notify=1;z=15};
+lbHighlightSize={cls="plus";text="Size：";left=49;top=190;right=128;bottom=207;align="right";color=7895160;dl=1;dt=1;notify=1;z=10};
+lbHighlightSizeValue={cls="plus";text="12";left=318;top=194;right=371;bottom=211;align="left";color=7895160;dl=1;dt=1;notify=1;z=11};
+lbOutputFilename={cls="plus";text="Output filename：";left=0;top=427;right=128;bottom=447;align="right";dl=1;dt=1;notify=1;z=30};
+lbOutputFolder={cls="plus";text="Output folder：";left=0;top=389;right=128;bottom=409;align="right";dl=1;dt=1;notify=1;z=29};
+lbPointerSizeValue={cls="plus";text="100%";left=316;top=347;right=355;bottom=364;align="left";color=7895160;dl=1;dt=1;notify=1;z=34};
 lbSettings={cls="static";text="Settings";left=17;top=2;right=219;bottom=25;transparent=1;z=8};
-palette1={cls="plus";left=135;top=453;right=150;bottom=465;dr=1;dt=1;edge=1;z=19};
-palette10={cls="plus";left=291;top=453;right=306;bottom=465;dr=1;dt=1;edge=1;z=28};
-palette2={cls="plus";left=152;top=453;right=167;bottom=465;dr=1;dt=1;edge=1;z=20};
-palette3={cls="plus";left=170;top=453;right=185;bottom=465;dr=1;dt=1;edge=1;z=21};
-palette4={cls="plus";left=187;top=453;right=202;bottom=465;dr=1;dt=1;edge=1;z=22};
-palette5={cls="plus";left=204;top=453;right=219;bottom=465;dr=1;dt=1;edge=1;z=23};
-palette6={cls="plus";left=222;top=453;right=237;bottom=465;dr=1;dt=1;edge=1;z=24};
-palette7={cls="plus";left=239;top=453;right=254;bottom=465;dr=1;dt=1;edge=1;z=25};
-palette8={cls="plus";left=256;top=453;right=271;bottom=465;dr=1;dt=1;edge=1;z=26};
-palette9={cls="plus";left=274;top=453;right=289;bottom=465;dr=1;dt=1;edge=1;z=27};
-tbHighlighterPadding={cls="plus";left=133;top=389;right=307;bottom=402;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=13};
-tbHighlighterSize={cls="plus";left=133;top=357;right=307;bottom=370;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=14}
+palette1={cls="plus";left=135;top=283;right=150;bottom=295;dr=1;dt=1;edge=1;z=18};
+palette10={cls="plus";left=291;top=283;right=306;bottom=295;dr=1;dt=1;edge=1;z=27};
+palette2={cls="plus";left=152;top=283;right=167;bottom=295;dr=1;dt=1;edge=1;z=19};
+palette3={cls="plus";left=170;top=283;right=185;bottom=295;dr=1;dt=1;edge=1;z=20};
+palette4={cls="plus";left=187;top=283;right=202;bottom=295;dr=1;dt=1;edge=1;z=21};
+palette5={cls="plus";left=204;top=283;right=219;bottom=295;dr=1;dt=1;edge=1;z=22};
+palette6={cls="plus";left=222;top=283;right=237;bottom=295;dr=1;dt=1;edge=1;z=23};
+palette7={cls="plus";left=239;top=283;right=254;bottom=295;dr=1;dt=1;edge=1;z=24};
+palette8={cls="plus";left=256;top=283;right=271;bottom=295;dr=1;dt=1;edge=1;z=25};
+palette9={cls="plus";left=274;top=283;right=289;bottom=295;dr=1;dt=1;edge=1;z=26};
+tbHighlighterPadding={cls="plus";left=133;top=223;right=307;bottom=236;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=12};
+tbHighlighterSize={cls="plus";left=133;top=194;right=307;bottom=207;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=13};
+tbPointerSize={cls="plus";left=133;top=347;right=307;bottom=360;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=35}
 )
 /*}}*/
 
 winform.btnSave.skin(style.defaultButton);
 winform.btnGifsicleHelp.skin(style.hyperlink);
-winform.btnGifsicleArgsExample.skin(style.hyperlink);
 winform.btnOutputFilenameExample.skin(style.hyperlink);
 winform.chkShrink.skin(style.checkbox);
 winform.chkOptimize.skin(style.checkbox);
 winform.tbHighlighterSize.setTrackbarRange(32,256);
 winform.tbHighlighterPadding.setTrackbarRange(6,128);
 winform.tbHighlighterSize.skin(style.trackbar);
-winform.tbHighlighterPadding.skin(style.trackbar);
+winform.tbHighlighterPadding.skin(style.trackbar)
+winform.tbPointerSize.setTrackbarRange(100,200);;
+winform.tbPointerSize.skin(style.trackbar);
+winform.chkPointerSize.skin(style.checkbox);
 winform.chkHighlightMouse.skin(style.checkbox);
 winform.btnOutputDir.skin(style.button);
 
@@ -60,7 +65,7 @@ import fsys.environment;
 winform.editOutputDir.text = fsys.environment.unExpand(config.setting.outputDir);
 winform.editOutputFilename.text = config.setting.outputFilename;
 
-winform.editGifsicleArgs.text = config.setting.gifsicleArgs || "--optimize=3 --colors 256";
+winform.editGifsicleArgs.text = config.setting.gifsicleArgs2 || "--optimize=3 --colors 256";
 winform.chkOptimize.checked = config.setting.chkOptimize;
 winform.chkShrink.checked = config.setting.chkShrink;
 
@@ -111,13 +116,16 @@ winform.btnSave.oncommand = function(id,event){
 	
 	config.setting.chkOptimize = winform.chkOptimize.checked;
 	config.setting.chkShrink = winform.chkOptimize.chkShrink;
-	config.setting.gifsicleArgs = winform.editGifsicleArgs.text;
+	config.setting.gifsicleArgs2 = winform.editGifsicleArgs.text;
 	config.setting.chkHighlight = winform.chkHighlightMouse.checked;
 	config.setting.highlightSize = winform.tbHighlighterSize.progressPos;
 	config.setting.highlightPadding = winform.tbHighlighterPadding.progressPos;
 	config.setting.highlightColor = gdi.colorParse(winform.editColor.text); 
 	
-	
+	if(!winform.chkPointerSize.checked){
+		winform.tbPointerSize.progressPos = 100;
+	}
+	config.setting.pointerSize = winform.tbPointerSize.progressPos;
 	
 	config.setting.save();	
 	
@@ -131,10 +139,6 @@ winform.btnSave.oncommand = function(id,event){
 winform.btnGifsicleHelp.oncommand = function(id,event){
 	import process;
 	process.openUrl("https://www.lcdf.org/gifsicle/man.html");
-}
-
-winform.btnGifsicleArgsExample.oncommand = function(id,event){
-	winform.editGifsicleArgs.text = winform.btnGifsicleArgsExample.text;
 }
 
 winform.chkHighlightMouse.checked = config.setting.chkHighlight;
@@ -231,6 +235,49 @@ winform.editOutputFilename.editBox.onChange = function(){
 	winform.btnSave.disabled = false;
 }
 
+winform.tbPointerSize.progressPos = config.setting.pointerSize;
+winform.lbPointerSizeValue.text  = config.setting.pointerSize + "%";
+winform.chkPointerSize.checked = config.setting.pointerSize != 100;
+
+winform.tbPointerSize.onPosChanged = function( pos,thumbTrack ){
+	winform.btnSave.disabled = false;	
+	winform.lbPointerSizeValue.text = pos + "%";
+	winform.chkPointerSize.checked = config.setting.pointerSize != 100;
+	if(_WIN10_LATER){
+		::User32.SystemParametersInfo(0x2029, 0, 32 * (pos/100), 1);
+	}
+	
+	winform.chkPointerSize.checked = pos != 100;
+}
+
+winform.chkPointerSize.oncommand = function(id,event){
+	winform.btnSave.disabled = false;
+	
+	if(_WIN10_LATER){
+		if(!winform.chkPointerSize.checked){
+			::User32.SystemParametersInfo(0x2029, 0, 32, 1);
+		}
+		else {
+			::User32.SystemParametersInfo(0x2029, 0, 32 * (winform.tbPointerSize.progressPos/100), 1);
+		}
+	}
+}
+
+if(_WIN10_LATER){
+	winform.btnPointerSetting.show(true);
+	winform.btnPointerSetting.skin({
+		background={
+			active=0xFF0078B0;
+			hover=0xFF00AEFF;
+		}; 
+	})
+	
+	winform.btnPointerSetting.oncommand = function(id,event){
+		import process.control;
+		process.control("ms-settings:easeofaccess-mousepointer")
+	}
+}
+
 winform.btnSave.text = uiLanguage.save;
 winform.chkShrink.text = uiLanguage.autoShrink;
 winform.chkOptimize.text = uiLanguage.optimizeGif;
@@ -242,6 +289,7 @@ winform.lbHighlightPadding.text  = uiLanguage.highlightPadding;
 winform.lbHighlightColor.text  = uiLanguage.highlightColor; 
 winform.lbOutputFolder.text = uiLanguage.outputFolder; 
 winform.lbOutputFilename.text = uiLanguage.outputFilename; 
+winform.chkPointerSize.text = uiLanguage.changePointerSize;
 
 import win.ui.simpleWindow;
 win.ui.simpleWindow(winform);

@@ -1,4 +1,5 @@
-﻿import config;
+﻿//gifRecorder 录屏
+import config;
 import thread.event;
 
 class gifRecorder{
@@ -21,6 +22,7 @@ class gifRecorder{
 				
 				mainForm.onStartRecording();
 	 
+	 			var pointerSize = config.setting.pointerSize;
 				var dpiShrink = config.setting.chkShrink;
 				var dpiScale =  gdi.getDpiScale();
 				var hwndPreview = mainForm.plusPreview.hwnd;
@@ -39,7 +41,7 @@ class gifRecorder{
     				gifFile.lastFrameTick = tk;
     				
 					var x,y,cx,cy = ..win.getPos(hwndPreview,true);
-					imgScreen.capture(,x,y,cx,cy,100); 
+					imgScreen.capture(,x,y,cx,cy,pointerSize); 
 					 
     				if(dpiShrink && (dpiScale>1.1)){
     					imgScreen.resize2(cx/dpiScale,cy/dpiScale);
