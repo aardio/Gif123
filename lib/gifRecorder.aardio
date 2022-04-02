@@ -1,0 +1,61 @@
+﻿import config;
+import thread.event;
+
+class gifRecorder{
+	ctor(){
+		this.event = ..thread.event(); 
+	};
+	start = function(){
+		this.event.reset();
+		
+		this.hThread = ..thread.create( 
+			function(mainForm,event){
+				import gdi;
+				import soImage;
+				import config;
+				
+				gifFile = soImage.gifFile(config.__pathRecording); 
+				if(!gifFile) return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording); 
+				gifFile.disposalMethod = 1;
+				gifFile.lastFrameTick = null;  
+				
+				mainForm.onStartRecording();
+	 
+				var dpiShrink = config.setting.chkShrink;
+				var dpiScale =  gdi.getDpiScale();
+				var hwndPreview = mainForm.plusPreview.hwnd;
+				var delay = 1000/mainForm.tbFps.progressPos;
+				
+				var imgScreen = soImage();
+				var imgCursor = soImage();
+				while( ! event.wait(delay) ){  
+					
+					var tk = ..time.tick();
+					if(gifFile.lastFrameTick){
+    					var delay = (tk-gifFile.lastFrameTick)/10;//抓下帧以前保存上一帧的延时 
+    					imgScreen.decreaseBpp(8,256,8);
+    					gifFile.write(imgScreen,true,delay); 
+					} 
+    				gifFile.lastFrameTick = tk;
+    				
+					var x,y,cx,cy = ..win.getPos(hwndPreview,true);
+					imgScreen.capture(,x,y,cx,cy,100); 
+					 
+    				if(dpiShrink && (dpiScale>1.1)){
+    					imgScreen.resize2(cx/dpiScale,cy/dpiScale);
+    				}
+				}	
+				
+				gifFile.close(); 
+				gifFile = null; 
+			},..mainForm,this.event
+		)	
+	}
+	
+	stop = function(){
+		if(this.hThread){
+			this.event.set();//使事件对象切换为有信号状态,使 wait 函数退出
+			..thread.waitOne(this.hThread);
+		} 
+	} 
+}

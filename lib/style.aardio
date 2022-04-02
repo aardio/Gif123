@@ -27,7 +27,13 @@ style = {
 			hover=0xFFFF0000
 		};
 		checked={
-			iconText='\uF14A'
+			iconText='\uF14A';
+			color={
+				active=0xFF00FF00;
+				default=0xFF000000;
+				disabled=0xFF9D9D9D;
+				hover=0xFFFF0000
+			};
 		}
 	};
 	record = {

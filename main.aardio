@@ -1,7 +1,7 @@
 import config;
 import uiLanguage;
 import fonts.FontAwesomeGif123; 
-import soImage; 
+import gifRecorder; 
 import fsys.environment;
 import win.region.hole;
 import win.ui.atom;
@@ -29,11 +29,8 @@ var atom,hwnd = mainForm.atom("DA909863-CBDD-4729-9E95-B1E46EB6E859.GIF123");
 if(!atom) return win.setForeground(hwnd)
 
 var holePreview = win.region.hole(mainForm.plusPreview);
-
-var imgScreen = soImage();
-var imgCursor = soImage();
-var gifFile;
-
+ 
+var recorder = gifRecorder();
 import mouse.highlighter;
 mainForm.btnRecord.oncommand = function(id,event){
 	mainForm.setCurrentImage(null);
@@ -48,9 +45,7 @@ mainForm.btnRecord.oncommand = function(id,event){
 		}
 	
 		mainForm.btnRecord.disabled = true;
-		mainForm.clearInterval(mainForm.timerId);
-		gifFile.close(); 
-		gifFile = null;
+		recorder.stop();
 		
 		mainForm.btnRecord.disabledText = { '\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
 		
@@ -85,12 +80,11 @@ mainForm.btnRecord.oncommand = function(id,event){
 		win.setTopmost(mainForm.hwnd,false); 
 		return;
 	}
-	
-	gifFile = soImage.gifFile(config.__pathRecording); 
-	if(!gifFile){
-		return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording)
-	}
-	
+
+	recorder.start();  
+}
+
+mainForm.onStartRecording = function(){
 	mainForm.btnRecord.recording = true;
 	mainForm.btnRecord.iconText = '\uF0C8';
 	mainForm.btnRecord.text = uiLanguage.stop; 
@@ -99,35 +93,7 @@ mainForm.btnRecord.oncommand = function(id,event){
 	mainForm.btnCopy.disabled = true;
 	mainForm.tbFps.disabled = true; 
 	mainForm.btnSettings.disabled = true; 
-	win.setTopmost(mainForm.hwnd);
-	 
-	gifFile.disposalMethod = 1;
-	gifFile.lasttick = null;  
-	
-	var dpiShrink = config.setting.chkShrink;
-	var dpiScale = gdi.getDpiScale();
-	mainForm.timerId = mainForm.setInterval( 
-		function(){
-			var tk = time.tick();
-			if(gifFile.lasttick ){
-    			var delay = (tk-gifFile.lasttick)/10;//抓下帧以前保存上一帧的延时 
-    			imgScreen.decreaseBpp(8,256,8);
-    			gifFile.write(imgScreen,true,delay); 
-			} 
-    		gifFile.lasttick = tk;
-    		
-			var x,y,cx,cy = mainForm.plusPreview.getPos(true);
-			imgScreen.capture(,x,y,cx,cy); 
-			
-    		var x,y = imgCursor.captureCursor();
-    		x,y = win.toClient(mainForm.plusPreview.hwnd,x,y) 
-    		imgScreen.mix(imgCursor,x,y,6/*_MIX_SCREEN*/);  
-    		
-    		if(dpiShrink && (dpiScale>1.1)){
-    			imgScreen.resize2(cx/dpiScale,cy/dpiScale);
-    		} 
-		},1000/mainForm.tbFps.progressPos
-	)
+	win.setTopmost(mainForm.hwnd); 
 	
 	if(config.setting.chkHighlight){
 		if(!mainForm.mouseHighlighter){
@@ -135,8 +101,9 @@ mainForm.btnRecord.oncommand = function(id,event){
 				,config.setting.highlightSize,config.setting.highlightPadding);
 			mainForm.mouseHighlighter.show();	
 		}
-	}
+	} 	
 }
+
 
 mainForm.setCurrentImage = function(path){
 	mainForm.plusPreview.$currentImagePath = path;
@@ -261,6 +228,7 @@ var setUiLanguage = function(lang){
 	tooltipCtrl.addTool(mainForm.btnExplore,uiLanguage.exploreTip); 
 	tooltipCtrl.addTool(mainForm.btnWebSite,uiLanguage.gitTip); 
 	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.hotkeyTip); 
+	tooltipCtrl.addTool(mainForm.chkPreview,uiLanguage.previewTip);
 	tooltipCtrl.addTool(mainForm.btnCopy,uiLanguage.copyTip); 
 	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings);
 	tooltipCtrl.addTool(mainForm.plusPosition,uiLanguage.optimizeGif); 
@@ -313,17 +281,6 @@ mainForm.adjust = function( cx,cy,wParam ) {
 	
 	if(mainForm.chkPreview.checked) mainForm.editGifsicleArgs.hide = cx/dpiScaleX<550;
 };
-
-import win.ui.accelerator;
-var accelerator = win.ui.accelerator({
-    { 
-        ctrl = true; shift = true; alt = true; vkey = 'Z'#; 
-        oncommand = function() {
-        	mainForm.btnRecord.oncommand();
-        }
-    };   
-    
-},mainForm );
 
 mainForm.btnRecord.hkId = mainForm.reghotkey(
     function(id,mod,vk){
@@ -435,6 +392,7 @@ mainForm.plusPosition.oncommand = function(id,event){
 		return;	
 	}
 
+	mainForm.chkPreview.disabled = true;
 	mainForm.plusPosition.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
 	var ret = thread.invokeAndWait(
 		function(inPath,outPath,gifsicleArgs){
@@ -444,6 +402,8 @@ mainForm.plusPosition.oncommand = function(id,event){
 	);
 	
 	mainForm.plusPosition.disabledText = null;	
+	mainForm.chkPreview.disabled = false;
+	
 	if(#ret){
 		mainForm.msgboxErr(ret);
 	}
@@ -454,7 +414,38 @@ mainForm.plusPosition.oncommand = function(id,event){
 		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format()		
 	} 
 }
-mainForm.editGifsicleArgs.orphanWindow()
+mainForm.editGifsicleArgs.orphanWindow();
+
+import win.ui.accelerator;
+var accelerator = win.ui.accelerator({
+    { 
+        ctrl = true; shift = true; alt = true; vkey = 'Z'#;  
+        oncommand = function() {
+        	mainForm.btnRecord.oncommand();
+        }
+    };  
+    { 
+        ctrl = true; vkey = 'Z'#;  
+        oncommand = function() {
+        	mainForm.btnRecord.oncommand();
+        }
+    }; 
+    { 
+        ctrl = true; vkey = 'C'#;  
+        oncommand = function() {
+        	mainForm.btnCopy.oncommand()
+        }
+    };   
+    { 
+        ctrl = true; vkey = 'P'#;  
+        oncommand = function() {
+            if(!mainForm.chkPreview.disabled){
+            	mainForm.chkPreview.checked = !mainForm.chkPreview.checked;
+            	mainForm.chkPreview.oncommand()
+            } 
+        }
+    };   
+},mainForm );
 
 mainForm.show();
 win.setTopmost(mainForm.hwnd,true);
