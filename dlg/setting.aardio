@@ -63,6 +63,7 @@ winform.btnOutputDir.skin(style.button);
 
 import fsys.environment;
 winform.editOutputDir.text = fsys.environment.unExpand(config.setting.outputDir);
+io.createDir(fsys.environment.expand(config.setting.outputDir));
 winform.editOutputFilename.text = config.setting.outputFilename;
 
 winform.editGifsicleArgs.text = config.setting.gifsicleArgs2 || "--optimize=3 --colors 256";
