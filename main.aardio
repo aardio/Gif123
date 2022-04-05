@@ -12,6 +12,7 @@ mainForm = win.form(text="Gif123 - 录屏工具";right=723;bottom=512;bgcolor=47
 mainForm.add(
 btnCopy={cls="plus";text="复制";left=158;top=0;right=225;bottom=30;align="left";color=3947580;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0EA';notify=1;textPadding={left=21};z=5};
 btnExplore={cls="plus";text='\uF07C';left=389;top=2;right=421;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=4};
+btnGifsicleHelp={cls="plus";text='\uF059';left=207;top=519;right=223;bottom=539;align="left";bgcolor=16777215;clipBk=false;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=14};
 btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=2}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
 btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=12};
 btnWebSite={cls="plus";text='\uF09B';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=9};
@@ -20,7 +21,7 @@ editGifsicleArgs={cls="edit";left=201;top=516;right=531;bottom=540;align="right"
 lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
 lbFps2={cls="plus";text="12";left=361;top=7;right=385;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
 plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;align="left";bgcolor=4752084;clipBk=false;db=1;dr=1;forecolor=16777215;hide=1;iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=10;top=1}};iconText='\uF255';notify=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;textPadding={left=24};z=11};
-plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=10789024;db=1;dl=1;dr=1;dt=1;repeat="scale";z=2};
+plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=10789024;clipBk=false;db=1;dl=1;dr=1;dt=1;repeat="scale";z=2};
 tbFps={cls="plus";left=267;top=9;right=358;bottom=22;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=6};
 titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1}
 )
@@ -60,10 +61,11 @@ mainForm.btnRecord.oncommand = function(id,event){
 		
 		if(config.setting.chkOptimize){
 			thread.invokeAndWait(
-				function(pathOutput,gifsicleArgs2){
+				function(pathOutput,gifsicleArgs){
 					import process.gifsicle;
-					var out = process.gifsicle.get(pathOutput,,gifsicleArgs2);
-				} ,config.setting.pathOutput,config.setting.gifsicleArgs2
+					gifsicleArgs = string.replace(gifsicleArgs,"--colors\s+0!\D","");
+					var out = process.gifsicle.get(pathOutput,,gifsicleArgs);
+				} ,config.setting.pathOutput,config.setting.gifsicleArgs3
 			) 	
 		}
 		 
@@ -79,6 +81,7 @@ mainForm.btnRecord.oncommand = function(id,event){
 		mainForm.btnRecord.iconText = '\uF111';
 		mainForm.btnRecord.recording = false;
 		win.setTopmost(mainForm.hwnd,false); 
+		win.setForeground(mainForm.hwnd);
 		return;
 	}
 
@@ -147,7 +150,7 @@ mainForm.chkPreview.oncommand = function(id,event){
 		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format();
 		mainForm.plusPosition.show(true); 
 		
-		mainForm.editGifsicleArgs.text = config.setting.gifsicleArgs2;
+		mainForm.editGifsicleArgs.text = config.setting.gifsicleArgs3;
 		mainForm.editGifsicleArgs.show(true);
 		
 		mainForm.plusPreview.predraw();
@@ -178,7 +181,9 @@ mainForm.btnExplore.oncommand = function(id,event){
 	var path = mainForm.getCurrentImage();
 	if(!path) return;
 	
-	process.exploreSelect(path)
+	process.exploreSelect(path);
+	thread.delay(500);
+	mainForm.hitMin();
 }
 
 import win.clip.gif;
@@ -204,6 +209,7 @@ mainForm.btnCopy.skin(style.button);
 mainForm.btnSettings.skin(style.button);
 mainForm.btnWebSite.skin(style.button);
 mainForm.btnExplore.skin(style.button);
+mainForm.btnGifsicleHelp.skin(style.button);
 mainForm.tbFps.skin(style.trackbar);
 mainForm.tbFps.setTrackbarRange(1,36);
 mainForm.tbFps.progressPos = 12;
@@ -224,9 +230,9 @@ var setUiLanguage = function(lang){
 	
 	tooltipCtrl.addTool(mainForm.lbFps,uiLanguage.fpsTip); 
 	tooltipCtrl.addTool(mainForm.lbFps2,uiLanguage.fpsTip); 
+	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.recordTip); 
 	tooltipCtrl.addTool(mainForm.btnExplore,uiLanguage.exploreTip); 
 	tooltipCtrl.addTool(mainForm.btnWebSite,uiLanguage.gitTip); 
-	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.hotkeyTip); 
 	tooltipCtrl.addTool(mainForm.chkPreview,uiLanguage.previewTip);
 	tooltipCtrl.addTool(mainForm.btnCopy,uiLanguage.copyTip); 
 	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings);
@@ -281,24 +287,102 @@ mainForm.adjust = function( cx,cy,wParam ) {
 	if(mainForm.chkPreview.checked) mainForm.editGifsicleArgs.hide = cx/dpiScaleX<550;
 };
 
-mainForm.btnRecord.hkId = mainForm.reghotkey(
-    function(id,mod,vk){
-		mainForm.btnRecord.oncommand(); 
-	},2/*_MOD_CONTROL*/|1/*_MOD_ALT*/| 4/*_MOD_SHIFT*/,'Z'#
-);
-
 mainForm.onDropFiles = function(files){
-	if(!..io.exist(files[1],4)) return;
+	var path = files[1];
+	if(!..io.exist(path,4)) return;
 	
 	if(mainForm.btnRecord.recording){ 
 		return mainForm.msgboxErr(uiLanguage.stopRecoding);
 	}
+	
+	if(mainForm.chkPreview.disabled && mainForm.btnRecord.disabled ){
+		return;
+	}
 
-	if(string.endWith(files[1],".gif",true)){
-		mainForm.setCurrentPreviewImage(files[1]);  
+	if(string.endWith(path,".gif",true)){
+		mainForm.setCurrentPreviewImage(path);  
 		mainForm.chkPreview.checked = true; 
 		mainForm.chkPreview.disabled = false;
 		mainForm.chkPreview.oncommand();
+	}
+	else{
+		mainForm.setCurrentPreviewImage(null);  
+		mainForm.chkPreview.checked = false; 
+		mainForm.chkPreview.disabled = false;
+		mainForm.chkPreview.oncommand();
+		
+		mainForm.btnRecord.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''}
+		mainForm.chkPreview.disabled = true;
+		mainForm.btnSettings.disabled = true;
+		mainForm.btnCopy.disabled = true;
+		mainForm.btnWebSite.disabled = true;
+		mainForm.btnExplore.disabled = true;
+		
+		thread.invoke( 
+			function(mainForm,files){
+				import fsys;
+				import fsys.environment;
+				import soImage;
+				import config;
+				
+				gifFile = soImage.gifFile(config.__pathRecording); 
+				if(!gifFile) return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording); 
+				gifFile.disposalMethod = 1; 
+				
+				var count = 0;
+				var delay = 1000/mainForm.tbFps.progressPos; 
+				for(i=1;#files;1){
+					var path = files[i];
+					
+					if(
+						string.endWith(path,".JPG",true)
+						||string.endWith(path,".PNG",true)
+						||string.endWith(path,".JPEG",true)
+						||string.endWith(path,".JFIF",true)
+						||string.endWith(path,".BMP",true)){
+							
+						var imgFrame = soImage();
+						imgFrame.load(path);
+						
+						if(imgFrame.isValid()){
+							imgFrame.decreaseBpp(8,256,8);
+    						gifFile.write(imgFrame,true,delay/10);
+    						count++;	
+						}
+					}	
+				
+				}
+				
+				gifFile.close(); 
+				
+				if(count>0){
+					var outputFilename = config.setting.outputFilename;
+					if(string.indexOf(outputFilename,"%")){
+						outputFilename = tostring(time(),outputFilename)
+					}
+					
+					config.setting.pathOutput = io.joinpath( fsys.environment.expand(config.setting.outputDir),outputFilename);
+					fsys.copy(config.__pathRecording,config.setting.pathOutput);
+					
+					mainForm.setCurrentPreviewImage(config.setting.pathOutput);  
+					mainForm.chkPreview.checked = true; 
+					mainForm.chkPreview.disabled = false;
+					mainForm.chkPreview.oncommand();
+				}
+				else {
+					mainForm.msgboxErr("Invalid picture format!")
+				}
+				
+				mainForm.btnExplore.disabled = false;	
+				mainForm.btnCopy.disabled = false;
+				mainForm.btnWebSite.disabled = false;
+				mainForm.chkPreview.disabled = false;
+				mainForm.btnSettings.disabled = false;
+				mainForm.btnRecord.disabledText = null;
+				mainForm.btnRecord.disabled = true;
+			},mainForm,files
+		)
+
 	}
 }
 
@@ -383,24 +467,26 @@ mainForm.plusPosition.oncommand = function(id,event){
 		inPath = config.__pathGifsicleTemp;
 	}
 	
-	var gifsicleArgs2 = mainForm.editGifsicleArgs.text;
-	if(string.indexOf(gifsicleArgs2,"--help") || string.indexOf(gifsicleArgs2,"?")){
+	var gifsicleArgs = mainForm.editGifsicleArgs.text;
+	if(string.indexOf(gifsicleArgs,"--help") || string.indexOf(gifsicleArgs,"?")){
 		import process;
 		process.openUrl("https://www.lcdf.org/gifsicle/man.html");
 		return;	
 	}
 	
-	gifsicleArgs2 = string.replace(gifsicleArgs2,"(\d+)--","\1 --");
-	gifsicleArgs2 = string.replace(gifsicleArgs2,"--colors(\d+)","--colors \1");
-	mainForm.editGifsicleArgs.text = gifsicleArgs2;
+	gifsicleArgs = string.replace(gifsicleArgs,"(\d+)--","\1 --");
+	gifsicleArgs = string.replace(gifsicleArgs,"--colors(\d+)","--colors \1");
+	mainForm.editGifsicleArgs.text = gifsicleArgs;
 	
 	mainForm.chkPreview.disabled = true;
 	mainForm.plusPosition.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''} 
 	var ret = thread.invokeAndWait(
-		function(inPath,outPath,gifsicleArgs2){
+		function(inPath,outPath,gifsicleArgs){
 			import process.gifsicle;
-			return process.gifsicle.get(inPath,outPath,gifsicleArgs2);
-		} ,inPath,outPath,gifsicleArgs2
+			gifsicleArgs = string.replace(gifsicleArgs,"--colors\s+0!\D","");
+
+			return process.gifsicle.get(inPath,outPath,gifsicleArgs);
+		} ,inPath,outPath,gifsicleArgs
 	);
 	
 	mainForm.plusPosition.disabledText = null;	
@@ -435,7 +521,14 @@ var accelerator = win.ui.accelerator({
     { 
         ctrl = true; vkey = 'Z'#;  
         oncommand = function() {
-        	mainForm.btnRecord.oncommand();
+            if(!mainForm.chkPreview.checked){
+            	mainForm.btnRecord.oncommand();
+            }
+            else {
+            	mainForm.chkPreview.checked = false;
+            	mainForm.chkPreview.oncommand()
+            }
+            
         }
     }; 
     { 
@@ -455,6 +548,51 @@ var accelerator = win.ui.accelerator({
     };   
 },mainForm );
 
+subscribe("spellingHotkeyChange",function(...){
+	if(#config.setting.recordHotkey){
+		if(mainForm.hkRecordId){
+			mainForm.unreghotkey(mainForm.hkRecordId)
+			mainForm.hkRecordId = null;
+		}
+		
+		mainForm.hkRecordId = mainForm.reghotkey( function(id,mod,vk){ 
+        	if(win.isIconic(mainForm.hwnd)){
+            	import mouse.screenArea;
+            	var area = mouse.screenArea(mainForm);
+            	area.onSelectionChanged = function(rc){
+            		
+            		owner.close();
+            		mainForm.show(9/*_SW_RESTORE*/);
+            		if( mainForm.chkPreview.checked ){
+            			mainForm.chkPreview.checked = false;
+            			mainForm.chkPreview.oncommand();
+            		}
+            		
+            		var x,y,cx,cy = mainForm.plusPreview.getPos();
+            		var x2,y2,cx2,cy2 = mainForm.getPos();
+            		
+            		mainForm.setPos(rc.left-x,rc.top-y
+            			,math.max(rc.width()+(cx2-cx),201),math.max(rc.height()+(cy2-cy),71));
+        			win.setTopmost(mainForm.hwnd,true); 
+            	}
+            	
+            	win.setTopmost(mainForm.hwnd,true);
+        		area.doModal();
+        	}
+        	else {
+        	    win.setTopmost(mainForm.hwnd,true);
+        	    if( mainForm.chkPreview.checked ){
+            		mainForm.chkPreview.checked = false;
+            		mainForm.chkPreview.oncommand();
+            	}
+            	
+        		mainForm.btnRecord.oncommand(); 
+        	}
+		},config.setting.recordHotkey[1],config.setting.recordHotkey[2])    	
+	}
+} )
+publish("spellingHotkeyChange");
+
 mainForm.onDestroy = function(){
     recorder.stop();
 }
@@ -465,6 +603,12 @@ mainForm.editGifsicleArgs.wndproc = function(hwnd,message,wParam,lParam){
 			mainForm.plusPosition.oncommand();
 		}
 	} 
+}
+
+mainForm.btnGifsicleHelp.setParent(mainForm.editGifsicleArgs)
+mainForm.btnGifsicleHelp.oncommand = function(id,event){
+	import process;
+	process.openUrl("https://www.lcdf.org/gifsicle/man.html");
 }
 
 mainForm.show();

@@ -9,7 +9,9 @@ This utility works on any version of Windows, starting from Windows XP and up to
 
 ![screenshot](./screenshots/en.png)
 
-![screenshot](./screenshots/en2.png)
+![screenshot](./screenshots/area.gif)
+
+![screenshot](./screenshots/opt.gif)
 
 # License
 

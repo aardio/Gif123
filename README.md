@@ -7,10 +7,11 @@
 
 兼容 XP，Vista，Win7，Win8，Win10，Win11...... 等所有流行桌面操作系统。 本软件复制的 GIF 文件可直接粘贴到 QQ、浏览器编辑器（例如微信公众号编辑器），不会出现无法预览、无效图像等问题。 
 
-![screenshot](./screenshots/zh1.png)
+![screenshot](./screenshots/zh.png)
 
-![screenshot](./screenshots/zh2.png)
+![screenshot](./screenshots/area.gif)
 
+![screenshot](./screenshots/opt.gif)
 # 开源许可
 
 本项目使用  [MIT License](./LICENSE) 或 [GPL 2.0](LICENSE-GPL) 开源许可证。

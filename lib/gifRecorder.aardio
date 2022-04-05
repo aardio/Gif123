@@ -4,20 +4,24 @@ import thread.event;
 
 class gifRecorder{
 	ctor(){
-		this.event = ..thread.event(); 
+		this.eventGif = ..thread.event(); 
+		this.eventTimer = ..thread.event(,true); 
 	};
 	start = function(){
-		this.event.reset();
+		this.stop();
 		
-		this.hThread = ..thread.create( 
-			function(mainForm,event){
+		this.eventGif.reset();
+		this.eventTimer.reset();
+		
+		this.hThreadGif = ..thread.create( 
+			function(mainForm,eventTimer,eventGif){
 				import gdi;
 				import soImage;
 				import config;
 				
 				gifFile = soImage.gifFile(config.__pathRecording); 
 				if(!gifFile) return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording); 
-				gifFile.disposalMethod = 1;
+				gifFile.disposalMethod = 1; 
 				gifFile.lastFrameTick = null;  
 				
 				mainForm.onStartRecording();
@@ -26,21 +30,26 @@ class gifRecorder{
 				var dpiShrink = config.setting.chkShrink;
 				var dpiScale =  gdi.getDpiScale();
 				var hwndPreview = mainForm.plusPreview.hwnd;
-				var delay = 1000/mainForm.tbFps.progressPos;
-				
+			
 				var imgScreen = soImage();
 				var imgCursor = soImage();
-				while( ! event.wait(delay) ){  
+				
+				var max = ..math.max;
+				var time_tick = ..time.tick;
+				var getPos = ..win.getPos;
+
+				while( eventGif.wait() ){
+					if(eventTimer.wait(0)){break;}
 					
-					var tk = ..time.tick();
+					var tk = time_tick();
 					if(gifFile.lastFrameTick){
-    					var delay = (tk-gifFile.lastFrameTick)/10;//抓下帧以前保存上一帧的延时 
+    					var delay = (tk-gifFile.lastFrameTick)/10;//抓下帧以前保存上一帧的延时  
     					imgScreen.decreaseBpp(8,256,8);
-    					gifFile.write(imgScreen,true,delay); 
+    					gifFile.write(imgScreen,true,delay);
 					} 
     				gifFile.lastFrameTick = tk;
     				
-					var x,y,cx,cy = ..win.getPos(hwndPreview,true);
+					var x,y,cx,cy = getPos(hwndPreview,true);
 					imgScreen.capture(,x,y,cx,cy,pointerSize); 
 					 
     				if(dpiShrink && (dpiScale>1.1)){
@@ -50,14 +59,29 @@ class gifRecorder{
 				
 				gifFile.close(); 
 				gifFile = null; 
-			},..mainForm,this.event
-		)	
+			},..mainForm,this.eventTimer,this.eventGif
+		)
+		
+		this.hThreadTimer = ..thread.create( 
+			function(mainForm,eventTimer,eventGif){ 
+				var delay = 1000/mainForm.tbFps.progressPos; 
+				while( ! eventTimer.wait(delay) ){  
+					 eventGif.set();//使事件对象切换为有信号状态,截屏1帧
+				}
+				
+				eventGif.set();
+			},..mainForm,this.eventTimer,this.eventGif
+		)		
 	}
 	
 	stop = function(){
-		if(this.hThread){
-			this.event.set();//使事件对象切换为有信号状态,使 wait 函数退出
-			..thread.waitOne(this.hThread);
+		if(this.hThreadGif){
+			this.eventTimer.set();//使事件对象切换为有信号状态,使 wait 函数退出
+			..thread.waitOne(this.hThreadGif);
+			..thread.waitOne(this.hThreadTimer);
+			
+			this.hThreadGif = null;
+			this.hThreadTimer = null;
 		} 
 	} 
 }
