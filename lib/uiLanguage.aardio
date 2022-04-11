@@ -21,7 +21,7 @@ en = {
 	autoShrink = "Auto shrink on high DPI display";
 	optimizeGif = "Optimize GIF to reduce size with Gifsicle";  
 	gifsicleMan = "Gifsicle manual";
-	highlightMouse = "Highlight mouse cursor while recording screen";
+	highlightMouse = "Highlight mouse cursor while recording";
 	highlightSize = "Size:";
 	highlightPadding = "Padding:";
 	highlightColor = "Color:";
@@ -31,7 +31,8 @@ en = {
 	outputFilename = "Output filename：";
 	outputFolderNotExists = "The output folder does not exist.";
 	outputFilenameInvalid = "The output file name contains invalid characters. Please enter a valid file name.";
-	changePointerSize = "Change mouse pointer size";
+	changePointerSize = "Pointer size";
+	captureCursor ="Capture mouse cursor while recording";
 }
 
 chs = {
@@ -64,7 +65,8 @@ chs = {
 	outputFilename = "输出文件名:";
 	outputFolderNotExists = "错误的输出目录。";
 	outputFilenameInvalid = "无效文件名。";
-	changePointerSize = "改变鼠标指针大小";
+	changePointerSize = "指针大小";
+	captureCursor ="录屏包含鼠标指针";
 }
 
 cht = {
@@ -97,7 +99,8 @@ cht = {
 	outputFilename = "輸出文件名:";
 	outputFolderNotExists = "錯誤的輸出目錄。";
 	outputFilenameInvalid = "無效文件名。";
-	changePointerSize = "改變滑鼠指針大小";
+	changePointerSize = "指針大小";
+	captureCursor = "錄屏包含滑鼠指針";
 }
 
 jp = {
@@ -130,7 +133,8 @@ jp = {
 	outputFilename = "出力ファイル名:";
 	outputFolderNotExists = "間違った出力ディレクトリ。";
 	outputFilenameInvalid = "無効なファイル名。";
-	changePointerSize = "マウスポインタのサイズを変更";
+	changePointerSize = "ポインタサイズ";
+	captureCursor = "記録でマウスカーソルをキャプチャする";
 }
 
 ko = {
@@ -163,7 +167,8 @@ ko = {
 	outputFilename = "출력 파일 이름:"; 
 	outputFolderNotExists = "잘못된 출력 디렉토리."; 
 	outputFilenameInvalid = "잘못된 파일 이름입니다.";
-	changePointerSize = "마우스 포인터 크기 변경";
+	changePointerSize = "포인터 크기";
+	captureCursor = "녹음 중 마우스 커서 캡처";
 }
 
 ..table.assign(self,chs);

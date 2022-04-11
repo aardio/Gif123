@@ -15,6 +15,7 @@ config.setting.mix(
 	highlightPadding = 13;
 	highlightColor = 0x90668800;
 	pointerSize = 100;
+	captureMouse = true;
 	recordHotkey = {2/*_MOD_CONTROL*/|4/*_MOD_SHIFT*/|1/*_MOD_ALT*/;'Z'#}
 );
 
