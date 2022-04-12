@@ -1,0 +1,48 @@
+//水平选项卡
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text="前端教程";right=449;bottom=463;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
+winform.add(
+bkplus={cls="bkplus";left=1;top=0;right=450;bottom=28;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1};
+custom={cls="custom";left=0;top=29;right=450;bottom=465;db=1;dl=1;dr=1;dt=1;z=6};
+navBegin={cls="plus";left=217;top=27;right=450;bottom=28;bgcolor=13549760;border={color=-16744448};db=1;dl=1;dr=1;forecolor=16777215;linearGradient=360;z=4};
+navEnd={cls="plus";left=0;top=3;right=17;bottom=28;border={bottom=1;color=-4144946};db=1;dr=1;z=5};
+navGif={cls="plus";text="GIF";left=17;top=3;right=76;bottom=28;border={bottom=1;color=-4144946};db=1;dr=1;z=3};
+navRecorder={cls="plus";text="Recorder";left=76;top=3;right=217;bottom=28;border={bottom=1;color=-4144946};db=1;dr=1;z=2}
+)
+/*}}*/
+
+import win.ui.tabs;
+var tbs = win.ui.tabs(winform.navRecorder,winform.navGif)
+tbs.margin = 0;
+
+tbs.loadForm(1,"\dlg\setting\gif.aardio");
+tbs.loadForm(2,"\dlg\setting\recorder.aardio");
+
+import uiLanguage;
+winform.navRecorder.text = uiLanguage.recorder;
+	
+tbs.skin({
+	foreground={
+		active=0xFFFFFFFF;
+		default=0x00FFFFFF;
+		hover=0xFFCCCCCC;
+	};
+	checked={
+		foreground={ 
+			default=0xFFFFFFFF; 
+		};
+		border = { 
+			default = {left=1;right=1;top=1;color=0xFFC0C0CE} 
+			disabled = {left=1;right=1;top=1;color=0xFFC0C0CE} 
+		}; 
+	}
+}); 
+tbs.selIndex = 2;
+
+import win.ui.simpleWindow;
+win.ui.simpleWindow(winform);
+
+winform.show();
+win.loopMessage();

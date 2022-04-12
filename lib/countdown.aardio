@@ -1,0 +1,40 @@
+//countdown 倒计时
+import win.ui;
+import config;
+
+class countdown{
+	ctor(parent,tParam){ 
+	var x,y,cx,cy = ..win.getPos(parent);
+	var width = ..math.min(cx/2,(cy-32)/2);
+	this = ..win.form(right=width;bottom=width;bgcolor=240;border="none";exmode="none";mode="popup";parent=parent)
+	this.add(
+	plus={cls="plus";text="3"; border={radius=-1};marginRight=3;marginBottom=3;left=0;top=0;color=16777215;font=LOGFONT(h=-width*0.87);forecolor=255;textPadding={left=2};z=1}
+	) 
+	
+	this.transparent(,0xF0);
+	this.plus.textRenderingHint = 3/*_TextRenderingHintAntiAlias*/ ;
+	this.plus.smoothingMode = 2/*_SmoothingModeHighQuality*/
+	this.plus.predraw();
+ 	
+	this.modifyStyleEx(,0x20/*_WS_EX_TRANSPARENT*/);
+	this.show(4/*_SW_SHOWNOACTIVATE*/);
+	
+	this.plus.onAnimation = function(state){
+		
+    	state = state - 1;
+    	if(state<=0){ 
+        	this.close();
+    		return false;
+    	}
+    	
+    	this.plus.text = state;
+		return state;
+	}
+	
+	this.plus.startAnimation(1000,..config.setting.countdown+1); 
+	};
+}
+
+/**intellisense()
+countdown() = 窗口类\n!winform.
+end intellisense**/

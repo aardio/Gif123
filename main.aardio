@@ -269,24 +269,6 @@ else {
 	setUiLanguage(uiLanguage.chs);
 }
 
-import win.ui.minmax;
-win.ui.minmax(mainForm,201,71);
-mainForm.adjust = function( cx,cy,wParam ) {	
-	var dpiScaleX = mainForm.dpiScaleX; 
-	if(mainForm.sizing) return;
-	
-	mainForm.btnWebSite.hide = cx/dpiScaleX<630; 
-	mainForm.btnSettings.hide = cx/dpiScaleX<605;
-	mainForm.btnExplore.hide = cx/dpiScaleX<580; 
-	mainForm.lbFps2.hide = cx/dpiScaleX<550;
-	mainForm.tbFps.hide = cx/dpiScaleX<519;
-	mainForm.lbFps.hide = cx/dpiScaleX<519;
-	mainForm.btnCopy.hide = cx/dpiScaleX<360;
-	mainForm.chkPreview.hide = cx/dpiScaleX<300;
-	
-	if(mainForm.chkPreview.checked) mainForm.editGifsicleArgs.hide = cx/dpiScaleX<550;
-};
-
 mainForm.onDropFiles = function(files){
 	var path = files[1];
 	if(!..io.exist(path,4)) return;
@@ -436,7 +418,7 @@ mainForm.wndproc = {
 }
 
 mainForm.btnSettings.oncommand = function(id,event){
-	var frmChild = mainForm.loadForm("\dlg\setting.aardio");
+	var frmChild = mainForm.loadForm("\dlg\setting\setting.aardio");
 	frmChild.doModal();
 }
 
@@ -610,6 +592,25 @@ mainForm.btnGifsicleHelp.oncommand = function(id,event){
 	import process;
 	process.openUrl("https://www.lcdf.org/gifsicle/man.html");
 }
+
+import win.ui.minmax;
+win.ui.minmax(mainForm,201,71);
+
+mainForm.adjust = function( cx,cy,wParam ) {	
+	var dpiScaleX = mainForm.dpiScaleX; 
+	if(mainForm.sizing) return;
+	
+	mainForm.btnWebSite.hide = cx/dpiScaleX<630; 
+	mainForm.btnSettings.hide = cx/dpiScaleX<605;
+	mainForm.btnExplore.hide = cx/dpiScaleX<580; 
+	mainForm.lbFps2.hide = cx/dpiScaleX<550;
+	mainForm.tbFps.hide = cx/dpiScaleX<519;
+	mainForm.lbFps.hide = cx/dpiScaleX<519;
+	mainForm.btnCopy.hide = cx/dpiScaleX<360;
+	mainForm.chkPreview.hide = cx/dpiScaleX<300;
+	
+	if(mainForm.chkPreview.checked) mainForm.editGifsicleArgs.hide = cx/dpiScaleX<550;
+};
 
 mainForm.show();
 win.setTopmost(mainForm.hwnd,true);

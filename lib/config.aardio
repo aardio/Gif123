@@ -16,7 +16,8 @@ config.setting.mix(
 	highlightColor = 0x90668800;
 	pointerSize = 100;
 	captureMouse = true;
-	recordHotkey = {2/*_MOD_CONTROL*/|4/*_MOD_SHIFT*/|1/*_MOD_ALT*/;'Z'#}
+	recordHotkey = {2/*_MOD_CONTROL*/|4/*_MOD_SHIFT*/|1/*_MOD_ALT*/;'Z'#};
+	countdown = 0;
 );
 
 //不需要序列化的配置名字前请添加下划线

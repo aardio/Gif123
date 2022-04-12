@@ -32,7 +32,10 @@ en = {
 	outputFolderNotExists = "The output folder does not exist.";
 	outputFilenameInvalid = "The output file name contains invalid characters. Please enter a valid file name.";
 	changePointerSize = "Pointer size";
-	captureCursor ="Capture mouse cursor while recording";
+	captureCursor = "Capture mouse cursor while recording";
+	countdown = "Show countdown before recording";
+	seconds = "seconds";
+	recorder = "Recorder";
 }
 
 chs = {
@@ -67,6 +70,9 @@ chs = {
 	outputFilenameInvalid = "无效文件名。";
 	changePointerSize = "指针大小";
 	captureCursor ="录屏包含鼠标指针";
+	countdown = "录屏前显示倒计时";
+	seconds = "秒";
+	recorder = "录屏设置";
 }
 
 cht = {
@@ -101,6 +107,9 @@ cht = {
 	outputFilenameInvalid = "無效文件名。";
 	changePointerSize = "指針大小";
 	captureCursor = "錄屏包含滑鼠指針";
+	countdown = "錄屏前顯示倒計時";
+	seconds = "秒";
+	recorder = "錄屏設置";
 }
 
 jp = {
@@ -135,6 +144,9 @@ jp = {
 	outputFilenameInvalid = "無効なファイル名。";
 	changePointerSize = "ポインタサイズ";
 	captureCursor = "記録でマウスカーソルをキャプチャする";
+	countdown="記録する前にカウントダウンを表示する";	
+	seconds = "秒";
+	recorder = "レコーダー";
 }
 
 ko = {
@@ -169,6 +181,9 @@ ko = {
 	outputFilenameInvalid = "잘못된 파일 이름입니다.";
 	changePointerSize = "포인터 크기";
 	captureCursor = "녹음 중 마우스 커서 캡처";
+	countdown = "녹화 전 카운트다운 표시";
+	seconds = "초";
+	recorder = "녹화기";
 }
 
 ..table.assign(self,chs);

@@ -10,6 +10,18 @@ class gifRecorder{
 	start = function(){
 		this.stop();
 		
+		..win.setTopmost(..mainForm.hwnd);
+		if(..config.setting.countdown){
+			..mainForm.btnRecord.disabled = true;
+			
+			import countdown;
+			var cd = countdown(..mainForm.hwnd);
+			cd.center(..mainForm.plusPreview.hwnd);
+			cd.doModal(,4/*_SW_SHOWNOACTIVATE*/);
+			
+			..mainForm.btnRecord.disabled = false;
+		}
+		
 		this.eventGif.reset();
 		this.eventTimer.reset();
 		
@@ -64,6 +76,7 @@ class gifRecorder{
 		
 		this.hThreadTimer = ..thread.create( 
 			function(mainForm,eventTimer,eventGif){ 
+				
 				var delay = 1000/mainForm.tbFps.progressPos; 
 				while( ! eventTimer.wait(delay) ){  
 					 eventGif.set();//使事件对象切换为有信号状态,截屏1帧

@@ -36,6 +36,15 @@ style = {
 			};
 		}
 	};
+	radio = {
+	    color = { 
+        	hover = 0xFFFF0000; 
+        	active = 0xFF00FF00;
+    	}
+    	checked = {  
+    		iconText = '\uF058'/*_FA_CHECK_CIRCLE*/
+    	} 
+    };	
 	record = {
 		color = {
 			active=0xFF00FF00;
