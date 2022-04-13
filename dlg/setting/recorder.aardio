@@ -8,7 +8,7 @@ import win.ui;
 var winform = win.form(text="aardio form";right=449;bottom=435;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
 winform.add(
 btnPointerSetting={cls="plus";text='\uF013';left=368;top=210;right=393;bottom=235;border={radius=6};clip=1;color=9868950;font=LOGFONT(name='FontAwesomeGif123');hide=1;notify=1;z=24};
-btnSave={cls="plus";text="Save";left=262;top=385;right=361;bottom=413;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF00C';notify=1;textPadding={left=32};z=1};
+btnSave={cls="plus";text="Save";left=262;top=385;right=361;bottom=413;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=1};
 chkCaptureMouse={cls="plus";text="Capture mouse cursor while recording";left=40;top=175;right=388;bottom=205;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=21};
 chkCountdownBeforeRecording={cls="plus";text="Show countdown before recording";left=40;top=259;right=388;bottom=289;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=28};
 chkHighlightMouse={cls="plus";text="Highlight mouse cursor while recording";left=40;top=18;right=388;bottom=48;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=2};
@@ -50,7 +50,7 @@ winform.tbPointerSize.skin(style.trackbar);
 winform.chkCaptureMouse.skin(style.checkbox);
 winform.chkHighlightMouse.skin(style.checkbox);
 winform.chkCountdownBeforeRecording.skin(style.checkbox);
-winform.tbCountdown.setTrackbarRange(0,10);
+winform.tbCountdown.setTrackbarRange(0,9);
 winform.tbCountdown.skin(style.trackbar);
 
 winform.hotkey.sethotkey(config.setting.recordHotkey[1],config.setting.recordHotkey[2])	
