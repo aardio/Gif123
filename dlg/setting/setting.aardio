@@ -1,5 +1,4 @@
 //水平选项卡
-import fonts.fontAwesome;
 import win.ui;
 /*DSG{{*/
 var winform = win.form(text="前端教程";right=449;bottom=463;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
