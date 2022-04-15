@@ -43,5 +43,9 @@ tbs.selIndex = 2;
 import win.ui.simpleWindow;
 win.ui.simpleWindow(winform);
 
+winform.onMouseDown  = function(wParam,lParam){
+	winform.hitCaption();	
+}
+
 winform.show();
 win.loopMessage();

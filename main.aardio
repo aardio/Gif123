@@ -16,7 +16,7 @@ btnGifsicleHelp={cls="plus";text='\uF059';left=207;top=519;right=223;bottom=539;
 btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=2}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
 btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=12};
 btnWebSite={cls="plus";text='\uF09B';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=9};
-chkPreview={cls="plus";text="预览";left=79;top=0;right=157;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=10};
+chkPreview={cls="plus";text="预览";left=79;top=0;right=157;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF03E';notify=1;textPadding={left=21};z=10};
 editGifsicleArgs={cls="edit";left=201;top=516;right=531;bottom=540;align="right";db=1;dr=1;edge=1;hide=1;z=13};
 lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
 lbFps2={cls="plus";text="12";left=361;top=7;right=385;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
@@ -538,9 +538,11 @@ subscribe("spellingHotkeyChange",function(...){
 		}
 		
 		mainForm.hkRecordId = mainForm.reghotkey( function(id,mod,vk){ 
-        	if(win.isIconic(mainForm.hwnd)){
+        	if(win.isIconic(mainForm.hwnd) && (!mainForm.btnRecord.recording)){
             	import mouse.screenArea;
             	var area = mouse.screenArea(mainForm);
+            	if(!area) return;
+            	
             	area.onSelectionChanged = function(rc){
             		
             		owner.close();

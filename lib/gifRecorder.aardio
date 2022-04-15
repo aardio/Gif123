@@ -38,6 +38,7 @@ class gifRecorder{
 				
 				mainForm.onStartRecording();
 	 
+	 			var errorDiffusion = config.setting.errorDiffusion;
 	 			var pointerSize = config.setting.captureMouse ? config.setting.pointerSize : null;
 				var dpiShrink = config.setting.chkShrink;
 				var dpiScale =  gdi.getDpiScale();
@@ -56,7 +57,7 @@ class gifRecorder{
 					var tk = time_tick();
 					if(gifFile.lastFrameTick){
     					var delay = (tk-gifFile.lastFrameTick)/10;//抓下帧以前保存上一帧的延时  
-    					imgScreen.decreaseBpp(8,256,8);
+    					imgScreen.decreaseBpp(8,256,8,errorDiffusion);
     					gifFile.write(imgScreen,true,delay);
 					} 
     				gifFile.lastFrameTick = tk;

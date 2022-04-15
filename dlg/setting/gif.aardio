@@ -6,17 +6,18 @@ import win.ui;
 /*DSG{{*/
 var winform = win.form(text="aardio form";right=450;bottom=435;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
 winform.add(
-btnGifsicleHelp={cls="plus";text='\uF059';left=383;top=122;right=404;bottom=144;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=1};
-btnOutputDir={cls="plus";text='\uF07C';left=383;top=206;right=404;bottom=228;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=2};
-btnOutputFilenameExample={cls="plus";text="%y%m%d %H%M%S.gif";left=210;top=322;right=404;bottom=346;align="right";clip=1;color=8388608;notify=1;textPadding={left=5};z=10};
-btnSave={cls="plus";text="Save";left=272;top=389;right=371;bottom=417;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=6};
-chkOptimize={cls="plus";text="Optimize output GIF animations for space";left=45;top=79;right=426;bottom=109;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=5};
-chkShrink={cls="plus";text="Auto shrink on high DPI display";left=45;top=37;right=426;bottom=67;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=3};
-editGifsicleArgs={cls="plus";left=49;top=118;right=404;bottom=144;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=4};
-editOutputDir={cls="plus";left=49;top=202;right=404;bottom=228;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=11};
-editOutputFilename={cls="plus";left=49;top=298;right=402;bottom=324;align="right";border={bottom=1;color=-6908266};editable="edit";font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=7};
-lbOutputFilename={cls="plus";text="Output filename：";left=49;top=277;right=295;bottom=297;align="left";dl=1;dt=1;notify=1;z=9};
-lbOutputFolder={cls="plus";text="Output folder：";left=49;top=184;right=272;bottom=204;align="left";dl=1;dt=1;notify=1;z=8}
+btnGifsicleHelp={cls="plus";text='\uF059';left=375;top=143;right=396;bottom=165;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=1};
+btnOutputDir={cls="plus";text='\uF07C';left=375;top=227;right=396;bottom=249;align="right";border={bottom=1;color=-6908266};color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;textPadding={right=-2};z=2};
+btnOutputFilenameExample={cls="plus";text="%y%m%d %H%M%S.gif";left=202;top=343;right=396;bottom=367;align="right";clip=1;color=8388608;notify=1;textPadding={left=5};z=10};
+btnSave={cls="plus";text="Save";left=264;top=390;right=363;bottom=418;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=6};
+chkErrorDiffusion={cls="plus";text="Error diffusion dithering";left=35;top=60;right=416;bottom=90;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=12};
+chkOptimize={cls="plus";text="Optimize output GIF animations for space";left=35;top=96;right=416;bottom=126;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=5};
+chkShrink={cls="plus";text="Auto shrink on high DPI display";left=35;top=24;right=416;bottom=54;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=3};
+editGifsicleArgs={cls="plus";left=41;top=139;right=396;bottom=165;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=4};
+editOutputDir={cls="plus";left=41;top=223;right=396;bottom=249;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=11};
+editOutputFilename={cls="plus";left=41;top=319;right=394;bottom=345;align="right";border={bottom=1;color=-6908266};editable="edit";font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=7};
+lbOutputFilename={cls="plus";text="Output filename：";left=41;top=298;right=287;bottom=318;align="left";dl=1;dt=1;notify=1;z=9};
+lbOutputFolder={cls="plus";text="Output folder：";left=41;top=205;right=264;bottom=225;align="left";dl=1;dt=1;notify=1;z=8}
 )
 /*}}*/
 
@@ -25,6 +26,7 @@ winform.btnGifsicleHelp.skin(style.button);
 winform.btnOutputFilenameExample.skin(style.hyperlink);
 winform.chkShrink.skin(style.checkbox);
 winform.chkOptimize.skin(style.checkbox);
+winform.chkErrorDiffusion.skin(style.checkbox);
 winform.btnOutputDir.skin(style.button);
 
 import fsys.environment;
@@ -91,6 +93,11 @@ winform.editOutputFilename.editBox.onChange = function(){
 	winform.btnSave.disabled = false;
 }
 
+winform.chkErrorDiffusion.checked = config.setting.errorDiffusion;
+winform.chkErrorDiffusion.oncommand = function(id,event){
+	winform.btnSave.disabled = false;	
+}
+
 winform.btnSave.oncommand = function(id,event){
 	
 	var outputDir = string.trim(winform.editOutputDir.text);
@@ -141,6 +148,7 @@ winform.btnSave.oncommand = function(id,event){
 	config.setting.gifsicleArgs3 = gifsicleArgs;
 	config.setting.chkOptimize = winform.chkOptimize.checked;
 	
+	config.setting.errorDiffusion = winform.chkErrorDiffusion.checked;
 	config.setting.save();	
 	
 	winform.btnSave.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''};
@@ -155,6 +163,7 @@ winform.chkShrink.text = uiLanguage.autoShrink;
 winform.chkOptimize.text = uiLanguage.optimizeGif;
 winform.lbOutputFolder.text = uiLanguage.outputFolder; 
 winform.lbOutputFilename.text = uiLanguage.outputFilename; 
+winform.chkErrorDiffusion.text = uiLanguage.errorDiffusion; 
 
 if(!winform.parent){
 	import win.ui.simpleWindow;

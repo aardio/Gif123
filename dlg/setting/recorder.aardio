@@ -7,36 +7,39 @@ import win.ui;
 /*DSG{{*/
 var winform = win.form(text="aardio form";right=449;bottom=435;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
 winform.add(
-btnPointerSetting={cls="plus";text='\uF013';left=368;top=210;right=393;bottom=235;border={radius=6};clip=1;color=9868950;font=LOGFONT(name='FontAwesomeGif123');hide=1;notify=1;z=24};
-btnSave={cls="plus";text="Save";left=262;top=385;right=361;bottom=413;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=1};
-chkCaptureMouse={cls="plus";text="Capture mouse cursor while recording";left=40;top=175;right=388;bottom=205;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=21};
-chkCountdownBeforeRecording={cls="plus";text="Show countdown before recording";left=40;top=259;right=388;bottom=289;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=28};
+btnPointerSetting={cls="plus";text='\uF013';left=368;top=239;right=393;bottom=264;border={radius=6};clip=1;color=9868950;font=LOGFONT(name='FontAwesomeGif123');hide=1;notify=1;z=24};
+btnSave={cls="plus";text="Save";left=262;top=392;right=361;bottom=420;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=1};
+chkCaptureMouse={cls="plus";text="Capture mouse cursor while recording";left=40;top=204;right=388;bottom=234;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=21};
+chkCountdownBeforeRecording={cls="plus";text="Show countdown before recording";left=40;top=276;right=388;bottom=306;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=28};
 chkHighlightMouse={cls="plus";text="Highlight mouse cursor while recording";left=40;top=18;right=388;bottom=48;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=2};
-editColor={cls="plus";text="#66880055";left=137;top=113;right=308;bottom=139;align="left";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=9};
-hotkey={cls="hotkey";left=227;top=344;right=411;bottom=364;edge=1;z=25};
-lbCountdownValue={cls="plus";text="0 seconds ";left=321;top=302;right=438;bottom=319;align="left";color=7895160;dl=1;dt=1;notify=1;z=29};
-lbHighlightColor={cls="plus";text="Color：";left=51;top=127;right=130;bottom=144;align="right";color=7895160;dl=1;dt=1;notify=1;z=10};
-lbHighlightPadding={cls="plus";text="Padding：";left=51;top=89;right=130;bottom=106;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
-lbHighlightPaddingValue={cls="plus";text="12";left=320;top=92;right=375;bottom=109;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
-lbHighlightSize={cls="plus";text="Size：";left=51;top=58;right=130;bottom=75;align="right";color=7895160;dl=1;dt=1;notify=1;z=3};
-lbHighlightSizeValue={cls="plus";text="12";left=320;top=62;right=373;bottom=79;align="left";color=7895160;dl=1;dt=1;notify=1;z=4};
-lbHkRecord={cls="plus";text="Start/Stop Recording hotkey：";left=4;top=344;right=224;bottom=364;align="right";dl=1;dt=1;notify=1;z=26};
-lbPointerSize={cls="plus";text="Pointer size：";left=15;top=211;right=130;bottom=231;align="right";color=7895160;dl=1;dt=1;notify=1;z=27};
-lbPointerSizeValue={cls="plus";text="100%";left=320;top=214;right=359;bottom=231;align="left";color=7895160;dl=1;dt=1;notify=1;z=22};
-palette1={cls="plus";left=137;top=150;right=152;bottom=162;dr=1;dt=1;edge=1;z=11};
-palette10={cls="plus";left=293;top=150;right=308;bottom=162;dr=1;dt=1;edge=1;z=20};
-palette2={cls="plus";left=154;top=150;right=169;bottom=162;dr=1;dt=1;edge=1;z=12};
-palette3={cls="plus";left=172;top=150;right=187;bottom=162;dr=1;dt=1;edge=1;z=13};
-palette4={cls="plus";left=189;top=150;right=204;bottom=162;dr=1;dt=1;edge=1;z=14};
-palette5={cls="plus";left=206;top=150;right=221;bottom=162;dr=1;dt=1;edge=1;z=15};
-palette6={cls="plus";left=224;top=150;right=239;bottom=162;dr=1;dt=1;edge=1;z=16};
-palette7={cls="plus";left=241;top=150;right=256;bottom=162;dr=1;dt=1;edge=1;z=17};
-palette8={cls="plus";left=258;top=150;right=273;bottom=162;dr=1;dt=1;edge=1;z=18};
-palette9={cls="plus";left=276;top=150;right=291;bottom=162;dr=1;dt=1;edge=1;z=19};
-tbCountdown={cls="plus";left=136;top=302;right=310;bottom=315;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=30};
-tbHighlighterPadding={cls="plus";left=135;top=91;right=309;bottom=104;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=5};
-tbHighlighterSize={cls="plus";left=135;top=62;right=309;bottom=75;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=6};
-tbPointerSize={cls="plus";left=135;top=214;right=309;bottom=227;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=23}
+editColor={cls="plus";text="#66880055";left=137;top=139;right=308;bottom=165;align="left";border={bottom=1;color=-6908266};editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=9};
+hotkey={cls="hotkey";left=227;top=356;right=411;bottom=376;edge=1;z=25};
+lbCountdownValue={cls="plus";text="0 seconds ";left=321;top=319;right=438;bottom=336;align="left";color=7895160;dl=1;dt=1;notify=1;z=29};
+lbHighlightColor={cls="plus";text="Color：";left=51;top=153;right=130;bottom=170;align="right";color=7895160;dl=1;dt=1;notify=1;z=10};
+lbHighlightPadding={cls="plus";text="Click animation：";left=0;top=86;right=130;bottom=103;align="right";color=7895160;dl=1;dt=1;notify=1;z=7};
+lbHighlightPaddingValue={cls="plus";text="0";left=320;top=86;right=375;bottom=103;align="left";color=7895160;dl=1;dt=1;notify=1;z=8};
+lbHighlightSize={cls="plus";text="Size：";left=51;top=55;right=130;bottom=72;align="right";color=7895160;dl=1;dt=1;notify=1;z=3};
+lbHighlightSizeValue={cls="plus";text="0";left=320;top=55;right=375;bottom=72;align="left";color=7895160;dl=1;dt=1;notify=1;z=4};
+lbHkRecord={cls="plus";text="Start/Stop Recording hotkey：";left=4;top=356;right=224;bottom=376;align="right";dl=1;dt=1;notify=1;z=26};
+lbOpacity={cls="plus";text="Opacity：";left=0;top=116;right=130;bottom=133;align="right";color=7895160;dl=1;dt=1;notify=1;z=32};
+lbOpacityValue={cls="plus";text="0";left=320;top=116;right=375;bottom=133;align="left";color=7895160;dl=1;dt=1;notify=1;z=33};
+lbPointerSize={cls="plus";text="Pointer size：";left=15;top=240;right=130;bottom=260;align="right";color=7895160;dl=1;dt=1;notify=1;z=27};
+lbPointerSizeValue={cls="plus";text="100%";left=320;top=243;right=359;bottom=260;align="left";color=7895160;dl=1;dt=1;notify=1;z=22};
+palette1={cls="plus";left=137;top=176;right=152;bottom=188;dr=1;dt=1;edge=1;z=11};
+palette10={cls="plus";left=293;top=176;right=308;bottom=188;dr=1;dt=1;edge=1;z=20};
+palette2={cls="plus";left=154;top=176;right=169;bottom=188;dr=1;dt=1;edge=1;z=12};
+palette3={cls="plus";left=172;top=176;right=187;bottom=188;dr=1;dt=1;edge=1;z=13};
+palette4={cls="plus";left=189;top=176;right=204;bottom=188;dr=1;dt=1;edge=1;z=14};
+palette5={cls="plus";left=206;top=176;right=221;bottom=188;dr=1;dt=1;edge=1;z=15};
+palette6={cls="plus";left=224;top=176;right=239;bottom=188;dr=1;dt=1;edge=1;z=16};
+palette7={cls="plus";left=241;top=176;right=256;bottom=188;dr=1;dt=1;edge=1;z=17};
+palette8={cls="plus";left=258;top=176;right=273;bottom=188;dr=1;dt=1;edge=1;z=18};
+palette9={cls="plus";left=276;top=176;right=291;bottom=188;dr=1;dt=1;edge=1;z=19};
+tbCountdown={cls="plus";left=136;top=319;right=310;bottom=332;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=30};
+tbHighlighterPadding={cls="plus";left=135;top=90;right=309;bottom=103;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=5};
+tbHighlighterSize={cls="plus";left=135;top=59;right=309;bottom=72;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=6};
+tbOpacity={cls="plus";left=135;top=120;right=309;bottom=133;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=31};
+tbPointerSize={cls="plus";left=135;top=243;right=309;bottom=256;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=23}
 )
 /*}}*/
 
@@ -52,6 +55,8 @@ winform.chkHighlightMouse.skin(style.checkbox);
 winform.chkCountdownBeforeRecording.skin(style.checkbox);
 winform.tbCountdown.setTrackbarRange(0,9);
 winform.tbCountdown.skin(style.trackbar);
+winform.tbOpacity.setTrackbarRange(0,255);
+winform.tbOpacity.skin(style.trackbar);
 
 winform.hotkey.sethotkey(config.setting.recordHotkey[1],config.setting.recordHotkey[2])	
 winform.chkHighlightMouse.checked = config.setting.chkHighlight;
@@ -60,12 +65,47 @@ winform.lbHighlightSizeValue.text = config.setting.highlightSize;
 winform.tbHighlighterPadding.progressPos = config.setting.highlightPadding;
 winform.lbHighlightPaddingValue.text = config.setting.highlightPadding; 
 winform.editColor.text = gdi.colorStringify(config.setting.highlightColor,true);
+winform.tbOpacity.progressPos = config.setting.highlightColor >> 24 & 0xFF;
+winform.lbOpacityValue.text = winform.tbOpacity.progressPos;
+
 var highlightColorPalette = config.setting.highlightColorPalette;
 for(i=1;10;1){
 	winform["palette"+i].skin(style.palette);
 	winform["palette"+i].background = highlightColorPalette[i];
 	winform["palette"+i].oncommand = function(){
 		winform.editColor.text = gdi.colorStringify(owner.backgroundColor,true);
+	}
+}
+
+winform.tbOpacity.onPosChanged = function( pos,thumbTrack ){
+	var clr = gdi.colorParse(winform.editColor.text) : 0;
+	var r,g,b,a = gdi.getRgba(clr);
+	clr = gdi.ARGB(r,g,b,pos);
+	
+	var str = gdi.colorStringify(clr,true);
+	if(str!=winform.editColor.text){
+		winform.editColor.text = str;
+	}
+}
+
+winform.editColor.editBox.onChange = function(){ 
+	winform.btnSave.disabled = false;
+	if(string.match(owner.text,"#\x\x\x\x\x\x\x\x")){
+		
+		var clr = gdi.colorParse(owner.text);
+		var r,g,b,a = gdi.getRgba(clr);
+		winform.tbOpacity.progressPos = a;
+		winform.lbOpacityValue.text = a;
+		
+		for(i=1;10;1){
+			if( winform["palette"+i].checked ) {
+				winform["palette"+i].background = clr;
+				break;
+			}
+		}
+		
+		winform.btnSave.disabled = false;
+		winform.chkHighlightMouse.oncommand();
 	}
 }
 
@@ -79,14 +119,6 @@ winform.tbHighlighterPadding.onPosChanged = function( pos,thumbTrack ){
 	winform.lbHighlightPaddingValue.text = pos;
 	winform.btnSave.disabled = false;
 	winform.chkHighlightMouse.oncommand();
-}
-
-winform.editColor.editBox.onChange = function(){ 
-	winform.btnSave.disabled = false;
-	if(string.match(owner.text,"#\x\x\x\x\x\x\x\x")){
-		winform.btnSave.disabled = false;
-		winform.chkHighlightMouse.oncommand();
-	}
 }
 
 winform.chkHighlightMouse.oncommand = function(id,event){
@@ -156,6 +188,10 @@ winform.btnSave.oncommand = function(id,event){
 	config.setting.captureMouse = winform.chkCaptureMouse.checked;
 	config.setting.pointerSize = winform.tbPointerSize.progressPos;
 	
+	for(i=1;10;1){
+		config.setting.highlightColorPalette[i] = winform["palette"+i].backgroundColor;
+	}
+	
 	config.setting.save();	
 	
 	winform.btnSave.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''};
@@ -207,6 +243,7 @@ winform.lbPointerSize.text = uiLanguage.changePointerSize;
 winform.lbHkRecord.text = uiLanguage.hkRecord;
 winform.chkCountdownBeforeRecording.text = uiLanguage.countdown; 
 winform.lbCountdownValue.text = config.setting.countdown + " " + uiLanguage.seconds;
+winform.lbOpacity.text = uiLanguage.opacity; 
 
 if(!winform.parent){
 	import win.ui.simpleWindow;
