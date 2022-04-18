@@ -13,7 +13,7 @@ btnSave={cls="plus";text="Save";left=264;top=390;right=363;bottom=418;align="lef
 chkErrorDiffusion={cls="plus";text="Error diffusion dithering";left=35;top=60;right=416;bottom=90;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=12};
 chkOptimize={cls="plus";text="Optimize output GIF animations for space";left=35;top=96;right=416;bottom=126;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=5};
 chkShrink={cls="plus";text="Auto shrink on high DPI display";left=35;top=24;right=416;bottom=54;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=3};
-editGifsicleArgs={cls="plus";left=41;top=139;right=396;bottom=165;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=4};
+editGifsicleArgs={cls="plus";left=41;top=139;right=396;bottom=165;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);notify=1;textPadding={top=6;right=21;bottom=2};z=4};
 editOutputDir={cls="plus";left=41;top=223;right=396;bottom=249;align="right";border={bottom=1;color=-6908266};clip=1;editable="edit";font=LOGFONT(h=-13);textPadding={top=6;right=21;bottom=2};z=11};
 editOutputFilename={cls="plus";left=41;top=319;right=394;bottom=345;align="right";border={bottom=1;color=-6908266};editable="edit";font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=7};
 lbOutputFilename={cls="plus";text="Output filename：";left=41;top=298;right=287;bottom=318;align="left";dl=1;dt=1;notify=1;z=9};
@@ -56,7 +56,7 @@ winform.editGifsicleArgs.editBox.onChange = function(){
 
 winform.btnGifsicleHelp.oncommand = function(id,event){
 	import process;
-	process.openUrl("https://www.lcdf.org/gifsicle/man.html");
+	process.openUrl("https://gif123.aardio.com/#gifsicle");
 }
 
 winform.btnOutputFilenameExample.oncommand = function(id,event){
@@ -168,6 +168,73 @@ winform.chkErrorDiffusion.text = uiLanguage.errorDiffusion;
 if(!winform.parent){
 	import win.ui.simpleWindow;
 	win.ui.simpleWindow(winform);	
+}
+
+winform.editGifsicleArgs.editBox.wndproc = function(hwnd,message,wParam,lParam){
+	
+	if(message==0x20A/*_WM_MOUSEWHEEL*/){
+		var delta = wParam >> 16; 
+		var b,e = owner.getsel();
+		var text = owner.text; 
+		
+		var left = string.match(string.slice(text,1,(e===null) ? (b<3?3:b): (e<3:3:e)),"()([a-z][^\d\s=]*)[\d\s=]*$"); 
+		if(!left) return;
+		
+		var text = string.slice(owner.text,left) ;
+		text = string.replace(text,"^([a-z]+)(\D+)(\d+)"
+			,function(tag,sep,value){
+				value = tonumber(value,10);
+				if(tag=="colors"){
+					if(delta>0){
+						if(value<2)value = 2;
+						elseif(value<4)value = 4;
+						elseif(value<8)value = 8;
+						elseif(value<16)value = 16;
+						elseif(value<32)value = 32;
+						elseif(value<64)value = 64;
+						elseif(value<128)value = 128;
+						elseif(value<256)value = 256;
+					}
+					else {
+						if(value>=256)value = 128;
+						elseif(value>=128)value = 64;
+						elseif(value>=64)value = 32;
+						elseif(value>=32)value = 16;
+						elseif(value>=16)value = 8;
+						elseif(value>=8)value = 4;
+						elseif(value>=4)value = 2;
+						elseif(value>=2)value = 0;
+					}  
+				}
+				elseif(tag=="lossy"){
+					if(delta>0){
+						value = value + 10;
+						if(value>100) value = 100;
+					}
+					else {
+						value = value - 10;
+						if(value<=0) value = 0;
+					}  
+				}  
+				elseif(tag=="optimize"){
+					if(delta>0){
+						if(value<1)value = 1;
+						elseif(value<2)value = 2;
+						elseif(value<3)value = 3; 
+					}
+					else {
+						if(value>=3)value = 2;
+						elseif(value>=2)value = 1;
+						elseif(value>=1)value = 0;
+					}  
+				} 
+				
+				return tag ++ sep ++ tostring(value);
+			},1)
+		
+		owner.text = string.slice(owner.text,1,left-1) ++ text;	
+		owner.setsel(b,e); 
+	}
 }
 
 winform.btnSave.disabled = true;

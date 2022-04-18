@@ -38,6 +38,13 @@ en = {
 	countdown = "Show countdown before recording";
 	seconds = "seconds";
 	recorder = "Recorder";
+	copyPath = "Copy as path";
+	ps = "Open with Photoshop";
+	pause = "Pause";
+	play = "Play";
+	prev = "Previous frame";
+	next = "Next frame";
+	deleteFrame = "Delete current frame";
 }
 
 chs = {
@@ -77,6 +84,13 @@ chs = {
 	countdown = "录屏前显示倒计时";
 	seconds = "秒";
 	recorder = "录屏设置";
+	copyPath = "复制为路径";
+	ps = "调用 Photoshop 编辑";
+	pause = "暂停";
+	play = "播放";
+	prev = "上一帧";
+	next = "下一帧";
+	deleteFrame = "删除当前帧";
 }
 
 cht = {
@@ -116,6 +130,13 @@ cht = {
 	countdown = "錄屏前顯示倒計時";
 	seconds = "秒";
 	recorder = "錄屏設置";
+	copyPath = "複製為路徑";
+	ps = "調用 Photoshop 編輯";
+	pause = "暫停";
+	play = "播放";
+	prev = "上一幀";
+	next = "下一幀";
+	deleteFrame = "刪除當前幀";
 }
 
 jp = {
@@ -155,6 +176,13 @@ jp = {
 	countdown="記録する前にカウントダウンを表示する";	
 	seconds = "秒";
 	recorder = "レコーダー";
+	copyPath="パスとしてコピー";
+	ps="Photoshopで開く";
+	pause="一時停止";
+	play="再生";
+	prev="前のフレーム";
+	next="次のフレーム";
+	deleteFrame="現在のフレームを削除";
 }
 
 ko = {
@@ -194,6 +222,13 @@ ko = {
 	countdown = "녹화 전 카운트다운 표시";
 	seconds = "초";
 	recorder = "녹화기";
+	copyPath = "경로로 복사";
+	ps = "포토샵으로 열기";
+	pause = "일시 중지";
+	pause = "재생";
+	prev = "이전 프레임";
+	next = "다음 프레임";
+	deleteFrame = "현재 프레임 삭제";
 }
 
 ..table.assign(self,chs);

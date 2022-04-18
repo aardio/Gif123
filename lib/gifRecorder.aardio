@@ -30,8 +30,9 @@ class gifRecorder{
 				import gdi;
 				import soImage;
 				import config;
+				import uiLanguage;
 				
-				gifFile = soImage.gifFile(config.__pathRecording); 
+				var gifFile = soImage.gifFile(config.__pathRecording); 
 				if(!gifFile) return mainForm.msgboxErr(uiLanguage.recodeErrMsg ++ config.__pathRecording); 
 				gifFile.disposalMethod = 1; 
 				gifFile.lastFrameTick = null;  

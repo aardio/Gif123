@@ -18,12 +18,13 @@ config.setting.mix(
 	captureMouse = true;
 	recordHotkey = {2/*_MOD_CONTROL*/|4/*_MOD_SHIFT*/|1/*_MOD_ALT*/;'Z'#};
 	countdown = 0;
+	fps = 12;
 );
 
 //不需要序列化的配置名字前请添加下划线
 namespace config {
-	__pathRecording = ..io.appData("gif123/config/recording.~");
-	__pathGifsicleTemp = ..io.appData("gif123/config/gifsicle.~"); 
+	__pathRecording = ..io.appData("gif123/config/recording~.gif");
+	__pathGifsicleTemp = ..io.appData("gif123/config/gifsicle~.gif"); 
 }
 
 /**intellisense(config)
