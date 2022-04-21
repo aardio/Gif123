@@ -100,5 +100,16 @@ style = {
 			}
 		};
 		group="palette";
-	}
+	};
+	pause = {
+		color = {
+			active=0xFF00FF00;
+			default=0xFF3C3C3C;
+			disabled=0xFF9D9D9D;
+			hover=0xFFFF0000
+		}
+		checked={
+			iconText='\uF04B';
+		}
+	}; 
 }

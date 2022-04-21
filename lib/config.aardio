@@ -23,8 +23,8 @@ config.setting.mix(
 
 //不需要序列化的配置名字前请添加下划线
 namespace config {
-	__pathRecording = ..io.appData("gif123/config/recording~.gif");
-	__pathGifsicleTemp = ..io.appData("gif123/config/gifsicle~.gif"); 
+	__pathRecording = ..io.appData("gif123/config/recording.~");
+	__pathUnoptimizedPreview = ..io.appData("gif123/config/preview.~"); 
 }
 
 /**intellisense(config)

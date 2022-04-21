@@ -40,11 +40,16 @@ en = {
 	recorder = "Recorder";
 	copyPath = "Copy as path";
 	ps = "Open with Photoshop";
+	pauseAndEdit = "Pause / Edit frames"; 
 	pause = "Pause";
 	play = "Play";
 	prev = "Previous frame";
 	next = "Next frame";
 	deleteFrame = "Delete current frame";
+	deletePrevFrames = "Delete all previous frames";
+	deleteNextFrames = "Delete all next frames";
+	undelete = "Undelete all frames";
+	adjustNumByScrolling = "You can adjust the numbers by scrolling with mouse wheel."
 }
 
 chs = {
@@ -86,11 +91,16 @@ chs = {
 	recorder = "录屏设置";
 	copyPath = "复制为路径";
 	ps = "调用 Photoshop 编辑";
+	pauseAndEdit = "暂停 / 编辑帧"; 
 	pause = "暂停";
 	play = "播放";
 	prev = "上一帧";
 	next = "下一帧";
 	deleteFrame = "删除当前帧";
+	deletePrevFrames = "删除之前的帧";
+	deleteNextFrames = "删除之后的帧";
+	undelete = "恢复已删除帧";
+	adjustNumByScrolling = "可使用鼠标滚动快速调整数值.";
 }
 
 cht = {
@@ -132,11 +142,16 @@ cht = {
 	recorder = "錄屏設置";
 	copyPath = "複製為路徑";
 	ps = "調用 Photoshop 編輯";
+	pauseAndEdit = "暫停 / 編輯幀"; 
 	pause = "暫停";
 	play = "播放";
 	prev = "上一幀";
 	next = "下一幀";
 	deleteFrame = "刪除當前幀";
+	deletePrevFrames = "刪除之前的幀";
+	deleteNextFrames = "刪除之後的幀";
+	undelete = "恢復已刪除幀";
+	adjustNumByScrolling = "可使用滑鼠滾動快速調整數值.";
 }
 
 jp = {
@@ -178,11 +193,16 @@ jp = {
 	recorder = "レコーダー";
 	copyPath="パスとしてコピー";
 	ps="Photoshopで開く";
-	pause="一時停止";
+	pauseAndEdit = "一時停止/フレームの 編集"; 
+	pause="停止";
 	play="再生";
 	prev="前のフレーム";
 	next="次のフレーム";
 	deleteFrame="現在のフレームを削除";
+	deletePrevFrames = "前のフレームを削除";
+	deleteNextFrames = "後のフレーム削除";
+	undelete = "削除したフレームを復元";
+	adjustNumByScrolling = "マウスホイールでスクロールして数値を調整できます。"
 }
 
 ko = {
@@ -224,11 +244,16 @@ ko = {
 	recorder = "녹화기";
 	copyPath = "경로로 복사";
 	ps = "포토샵으로 열기";
+	pauseAndEdit = "일시정지/프레임 편집"; 
 	pause = "일시 중지";
-	pause = "재생";
+	play = "재생";
 	prev = "이전 프레임";
 	next = "다음 프레임";
 	deleteFrame = "현재 프레임 삭제";
+	deletePrevFrames = "이전 프레임 모두 삭제";
+	deleteNextFrames = "다음 프레임 모두 삭제";
+	undelete = "모든 프레임 삭제 취소";
+	adjustNumByScrolling = "마우스 휠로 스크롤하여 숫자를 조정할 수 있습니다."
 }
 
 ..table.assign(self,chs);
