@@ -27,6 +27,8 @@
 
 预览模式下可以重新优化 GIF 文件，可使用鼠标滚轮快速调整优化选项中的数值。  
 
+![screenshot](./screenshots/re-optimize.gif)
+
 # 开源许可
 
 本项目使用  [MIT License](./LICENSE) 或 [GPL 2.0](LICENSE-GPL) 开源许可证。

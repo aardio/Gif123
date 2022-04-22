@@ -25,6 +25,8 @@ Drag and drop images to Gif123:
 
 The GIF can be re-optimize in preview mode, you can adjust the option numbers by scrolling with mouse wheel.
 
+![screenshot](./screenshots/re-optimize.gif)
+
 # License
 
  Licensed under either of [MIT License](./LICENSE) or [GPL 2.0](LICENSE-GPL) at your option.
