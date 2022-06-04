@@ -533,7 +533,7 @@ mainForm.tbFps.onPosChanged = function( pos,thumbTrack ){
 mainForm.tbFps.progressPos = config.setting.fps;
 
 mainForm.plusPreview.onMouseWheel = function(flags,delta,lParam){
-    mainForm.tbFps.progressPos = mainForm.tbFps.progressPos +(delta>0?1:-1)
+    mainForm.tbFps.progressPos = mainForm.tbFps.progressPos +(delta>0?-1:1)
 	mainForm.tbFps.onPosChanged(mainForm.tbFps.progressPos,true);
 }
 
