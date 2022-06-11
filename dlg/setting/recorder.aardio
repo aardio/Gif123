@@ -7,6 +7,7 @@ import win.ui;
 /*DSG{{*/
 var winform = win.form(text="aardio form";right=449;bottom=435;bgcolor=16777215;border="none";exmode="none";max=false;min=false;mode="popup")
 winform.add(
+btnImTip={cls="plus";text="ImTip";left=40;top=396;right=110;bottom=420;align="left";clip=1;color=8388608;iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123')};notify=1;textPadding={left=2};z=34};
 btnPointerSetting={cls="plus";text='\uF013';left=368;top=239;right=393;bottom=264;border={radius=6};clip=1;color=9868950;font=LOGFONT(name='FontAwesomeGif123');hide=1;notify=1;z=24};
 btnSave={cls="plus";text="Save";left=262;top=392;right=361;bottom=420;align="left";bgcolor=-5197169;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=12}};iconText='\uF0C7';notify=1;textPadding={left=32};z=1};
 chkCaptureMouse={cls="plus";text="Capture mouse cursor while recording";left=40;top=204;right=388;bottom=234;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=2}};iconText='\uF0C8 ';notify=1;textPadding={left=21};z=21};
@@ -254,6 +255,12 @@ winform.onDestroy = function(){
     if(winform.testHighlighter){
     	winform.testHighlighter.close();
     }
+}
+
+winform.btnImTip.skin(style.hyperlink);
+winform.btnImTip.oncommand = function(id,event){
+	import process;
+	process.openUrl("https://imtip.aardio.com");
 }
 
 winform.btnSave.disabled = true;

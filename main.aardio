@@ -17,7 +17,7 @@ btnMenu={cls="plus";text='\uF0D7';left=462;top=2;right=494;bottom=32;color=39475
 btnPause={cls="plus";text="暂停";left=5;top=0;right=67;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);hide=1;iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF04C';notify=1;textPadding={left=21};z=15};
 btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
 btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=13};
-btnWebSite={cls="plus";text='\uF09B';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=14};
+btnWebSite={cls="plus";text='\uF059';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=14};
 chkPreview={cls="plus";text="预览";left=79;top=0;right=157;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=1}};iconText='\uF03E';notify=1;textPadding={left=21};z=8};
 editGifsicleArgs={cls="edit";left=251;top=516;right=531;bottom=540;align="right";db=1;dr=1;edge=1;hide=1;z=10};
 lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=6};
@@ -280,7 +280,7 @@ mainForm.plusPreview.showContextMenu = function(x,y){
 			var cur = mainForm.tbFps.progressPos;
 					
 			menuFile.add(
-				uiLanguage.deleteFrame,
+				uiLanguage.deleteFrame + '\tDelete',
 				function(id){ 
 					var min,max = mainForm.tbFps.getProgressRange();
 					var cur = mainForm.tbFps.progressPos;
@@ -295,7 +295,7 @@ mainForm.plusPreview.showContextMenu = function(x,y){
 					if(cur>max) cur = max;
 					 
 					mainForm.tbFps.progressPos = cur;
-					mainForm.tbFps.onPosChanged( cur,true )
+					mainForm.tbFps.onPosChanged( cur,true );
 				} 
 			) 	
 		} 
@@ -500,7 +500,7 @@ mainForm.btnCopy.oncommand = function(id,event){
 }
 
 mainForm.btnWebSite.oncommand = function(id,event){
-	process.openUrl("https://github.com/aardio/gif123");
+	process.openUrl("https://gif123.aardio.com");
 }
 
 import style;
@@ -553,7 +553,7 @@ var setUiLanguage = function(lang){
 	//tooltipCtrl.addTool(mainForm.lbFps2,uiLanguage.fpsTip); 
 	tooltipCtrl.addTool(mainForm.btnRecord,uiLanguage.recordTip); 
 	tooltipCtrl.addTool(mainForm.btnExplore,uiLanguage.exploreTip); 
-	tooltipCtrl.addTool(mainForm.btnWebSite,uiLanguage.gitTip); 
+	tooltipCtrl.addTool(mainForm.btnWebSite,uiLanguage.viewHelp); 
 	tooltipCtrl.addTool(mainForm.chkPreview,uiLanguage.previewTip);
 	tooltipCtrl.addTool(mainForm.btnCopy,uiLanguage.copyTip); 
 	tooltipCtrl.addTool(mainForm.btnSettings,uiLanguage.settings);
@@ -872,7 +872,7 @@ mainForm.plusPosition.oncommand = function(id,event){
 		mainForm.plusPosition.text = "Size: " + math.size64(#buf).format();
 	} 
 	
-	if(#ret){
+	if(#ret && (id!==null) && (event!==null) ){
 		mainForm.editGifsicleArgs.onFocusGot = null;
 		
 		mainForm.editGifsicleArgs.setFocus();
@@ -974,6 +974,29 @@ var accelerator = win.ui.accelerator({
         	}
         }
     };  
+    { 
+        vkey = 0x2E/*_VK_DELETE*/;  
+        oncommand = function() {
+            if(!mainForm.chkPreview.checked) return;
+            if(mainForm.chkPreview.disabled) return; 
+			if(mainForm.plusPreview.getForeground().isPlaying()) return;
+            
+			var min,max = mainForm.tbFps.getProgressRange();
+			var cur = mainForm.tbFps.progressPos;
+			
+			mainForm.plusPreview.previewTimeline[cur].deleted = true;
+			mainForm.plusPreview.frameDeleted = true;
+			
+			mainForm.plusPosition.oncommand(); 
+			mainForm.btnPause.oncommand(); 
+			
+			var min,max = mainForm.tbFps.getProgressRange();
+			if(cur>max) cur = max;
+				
+			mainForm.tbFps.progressPos = cur;
+			mainForm.tbFps.onPosChanged( cur,true )
+        }
+    }; 
 },mainForm );
 
 subscribe("spellingHotkeyChange",function(...){
