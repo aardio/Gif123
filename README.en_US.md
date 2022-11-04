@@ -11,17 +11,9 @@ Highlight mouse cursor and show click animation:
 
 ![screenshot](./screenshots/click-animation.gif)
 
-Select the area of the screen you want to record:
-
-![screenshot](./screenshots/area.gif)
-
 Edit frames while the preview is paused:
 
 ![screenshot](./screenshots/preview.en.jpg)
-
-Drag and drop images to Gif123:
-
-![screenshot](./screenshots/opt.gif)
 
 The GIF can be re-optimize in preview mode, you can adjust the option numbers by scrolling with mouse wheel.
 
