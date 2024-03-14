@@ -3,7 +3,7 @@
 English | [简体中文](./README.md)
 
 Record an area of your desktop to a GIF, easily copy and paste it wherever you want.  
-[The executable file](https://gif123.aardio.com/download/Gif123.7z) size is 755 KMB only. This utility works on any version of Windows, starting from Windows XP and up to Windows 11. Both 32-bit and 64-bit systems are supported.
+[The executable file](https://gif123.aardio.com/download/Gif123.7z) size is 808 KMB only. This utility works on any version of Windows, starting from Windows XP and up to Windows 11. Both 32-bit and 64-bit systems are supported.
 
 ![screenshot](./screenshots/en.png)
 
