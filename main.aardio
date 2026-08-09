@@ -8,24 +8,24 @@ import win.region.hole;
 import win.ui.atom;
 import win.ui;
 /*DSG{{*/
-mainForm = win.form(text="Gif123 - 录屏工具";right=723;bottom=512;bgcolor=4752084;border="none")
+mainForm = win.form(text="Gif123 - 录屏工具";right=723;bottom=512;bgcolor=0x4882D4;border="none")
 mainForm.add(
-btnCopy={cls="plus";text="复制";left=158;top=0;right=225;bottom=30;align="left";color=3947580;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF0EA';notify=1;textPadding={left=21};z=4};
-btnExplore={cls="plus";text='\uF07C';left=389;top=2;right=421;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=12};
-btnGifsicleHelp={cls="plus";text='\uF059';left=257;top=519;right=273;bottom=539;align="left";bgcolor=16777215;clipBk=false;color=3947580;db=1;dr=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=11};
-btnMenu={cls="plus";text='\uF0D7';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');hide=1;notify=1;z=16};
-btnPause={cls="plus";text="暂停";left=5;top=0;right=67;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);hide=1;iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF04C';notify=1;textPadding={left=21};z=15};
-btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
-btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=13};
-btnWebSite={cls="plus";text='\uF059';left=462;top=2;right=494;bottom=32;color=3947580;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=14};
+btnCopy={cls="plus";text="复制";left=158;top=0;right=225;bottom=30;align="left";color=0x3C3C3C;disabled=1;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF0EA';notify=1;textPadding={left=21};z=4};
+btnExplore={cls="plus";text='\uF07C';left=389;top=2;right=421;bottom=32;color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=12};
+btnGifsicleHelp={cls="plus";text='\uF059';left=257;top=519;right=273;bottom=539;align="left";bgcolor=0xFFFFFF;clipBk=false;color=0x3C3C3C;db=1;dr=1;font=LOGFONT(h=-15;name='FontAwesomeGif123');notify=1;z=11};
+btnMenu={cls="plus";text='\uF0D7';left=462;top=2;right=494;bottom=32;color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');hide=1;notify=1;z=16};
+btnPause={cls="plus";text="暂停";left=5;top=0;right=67;bottom=30;align="left";color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-13);hide=1;iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF04C';notify=1;textPadding={left=21};z=15};
+btnRecord={cls="plus";text="录制";left=5;top=0;right=80;bottom=30;align="left";color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesomeGif123');padding={left=1;top=1}};iconText='\uF111';notify=1;textPadding={left=21};z=3};
+btnSettings={cls="plus";text='\uF013';left=426;top=2;right=458;bottom=32;color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=13};
+btnWebSite={cls="plus";text='\uF059';left=462;top=2;right=494;bottom=32;color=0x3C3C3C;dl=1;dt=1;font=LOGFONT(h=-17;name='FontAwesomeGif123');notify=1;z=14};
 chkPreview={cls="plus";text="预览";left=79;top=0;right=157;bottom=30;align="left";dl=1;dt=1;font=LOGFONT(h=-14);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesomeGif123');padding={left=1}};iconText='\uF03E';notify=1;textPadding={left=21};z=8};
 editGifsicleArgs={cls="edit";left=251;top=516;right=531;bottom=540;align="right";db=1;dr=1;edge=1;hide=1;z=10};
-lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=7895160;dl=1;dt=1;notify=1;z=6};
-lbFps2={cls="plus";text="12";left=361;top=7;right=385;bottom=24;align="left";color=7895160;dl=1;dt=1;notify=1;z=7};
-plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;align="left";bgcolor=4752084;clipBk=false;db=1;dr=1;forecolor=16777215;hide=1;iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=10;top=1}};iconText='\uF255';notify=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;textPadding={left=24};z=9};
-plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=4752084;clipBk=false;db=1;dl=1;dr=1;dt=1;foreRepeat="scale";notify=1;repeat="scale";z=2};
-tbFps={cls="plus";left=267;top=9;right=358;bottom=22;bgcolor=-2512093;border={radius=-1};color=1995263;dl=1;dt=1;foreRight=13;forecolor=-14911489;paddingBottom=5;paddingTop=5;z=5};
-titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=10789024;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=1}
+lbFps={cls="plus";text="FPS：";left=227;top=7;right=265;bottom=24;align="right";color=0x787878;dl=1;dt=1;notify=1;z=6};
+lbFps2={cls="plus";text="12";left=361;top=7;right=385;bottom=24;align="left";color=0x787878;dl=1;dt=1;notify=1;z=7};
+plusPosition={cls="plus";text="Size: 100 x 100";left=532;top=515;right=663;bottom=540;align="left";bgcolor=0x4882D4;clipBk=false;db=1;dr=1;forecolor=0xFFFFFF;hide=1;iconStyle={align="left";font=LOGFONT(name='FontAwesomeGif123');padding={left=10;top=1}};iconText='\uF255';notify=1;paddingBottom=2;paddingLeft=2;paddingRight=2;paddingTop=2;textPadding={left=24};z=9};
+plusPreview={cls="plus";left=2;top=32;right=722;bottom=512;bgcolor=0x4882D4;clipBk=false;db=1;dl=1;dr=1;dt=1;foreRepeat="scale";notify=1;repeat="scale";z=2};
+tbFps={cls="plus";left=267;top=9;right=358;bottom=22;bgcolor=0x23ABD9;border={radius=-1};color=0x1E71FF;dl=1;dt=1;foreRight=13;forecolor=0xFF771C;paddingBottom=5;paddingTop=5;z=5};
+titleBar={cls="bkplus";left=-6;top=-2;right=724;bottom=30;bgcolor=0xA4A0A0;dl=1;dr=1;dt=1;forecolor=0xFFFFFF;linearGradient=180;z=1}
 )
 /*}}*/
 
@@ -697,6 +697,9 @@ mainForm.onEnterSizeMove = function(){
 	} 
 }
 
+import win.ui.minmax;
+win.ui.minmax(mainForm,201,71);
+
 import win.ui.simpleWindow;
 var wndFrame = win.ui.simpleWindow(mainForm);
 
@@ -1126,9 +1129,6 @@ mainForm.btnGifsicleHelp.oncommand = function(id,event){
 	import process;
 	process.openUrl("https://gif123.aardio.com/#gifsicle");
 }
-
-import win.ui.minmax;
-win.ui.minmax(mainForm,201,71);
 
 mainForm.preadjust = function( cx,cy,wParam ) {	 
 	var dpiScaleX = mainForm.dpiScaleX; 
